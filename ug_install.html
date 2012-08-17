@@ -1,0 +1,227 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>2. Installation &mdash; Yaff 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Yaff 1.0 documentation" href="index.html" />
+    <link rel="next" title="3. If you encounter a problem" href="ug_troubles.html" />
+    <link rel="prev" title="1. Features" href="ug_features.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="ug_troubles.html" title="3. If you encounter a problem"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="ug_features.html" title="1. Features"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Yaff 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="installation">
+<span id="ug-sec-install"></span><h1>2. Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="disclaimer">
+<h2>2.1. Disclaimer<a class="headerlink" href="#disclaimer" title="Permalink to this headline">¶</a></h2>
+<p>Yaff is developed and tested on modern Linux environments. The
+installation instructions below are given for a Linux system only. If you want
+to use Yaff on other operating systems such as Windows or OSX, you should
+have a minimal computer geek status to get it working. We are always interested
+in hearing from your installation adventures.</p>
+</div>
+<div class="section" id="molmod-dependency">
+<h2>2.2. MolMod dependency<a class="headerlink" href="#molmod-dependency" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="http://molmod.github.com/molmod/">MolMod</a> is a Python library used by most
+Python programs developed at the CMM. It must be installed before Yaff can
+be used or installed. Installation and download instructions can be found in the
+<a class="reference external" href="http://molmod.github.com/molmod/tutorial/install.html">molmod documentation</a>.
+The instructions below only work if the MolMod package is installed.</p>
+</div>
+<div class="section" id="external-dependencies">
+<h2>2.3. External dependencies<a class="headerlink" href="#external-dependencies" title="Permalink to this headline">¶</a></h2>
+<p>Some software packages should be installed before Yaff can be installed or
+used. It is recommended to use the software package management of your Linux
+distribution to install these dependencies.</p>
+<p>The following software must be installed:</p>
+<ul class="simple">
+<li>Python &gt;= 2.7 (including the development files): <a class="reference external" href="http://www.python.org/">http://www.python.org/</a></li>
+<li>Numpy &gt;= 1.0: <a class="reference external" href="http://numpy.scipy.org/">http://numpy.scipy.org/</a></li>
+<li>Cython &gt;= 0.15.1 : <a class="reference external" href="http://www.cython.org/">http://www.cython.org/</a></li>
+<li>h5py &gt;= 2.0.0: <a class="reference external" href="http://code.google.com/p/h5py/">http://code.google.com/p/h5py/</a></li>
+<li>matplotlib &gt;= 1.0.0: <a class="reference external" href="http://matplotlib.sourceforge.net/">http://matplotlib.sourceforge.net/</a></li>
+</ul>
+<p>Most Linux distributions can install this software with just a single terminal
+command.</p>
+<ul>
+<li><p class="first">Ubuntu 12.4 and later:</p>
+<div class="highlight-python"><pre>sudo apt-get install python-numpy cython python-h5py python-matplotlib python-nose python-sphinx</pre>
+</div>
+</li>
+<li><p class="first">Fedora 17 and later:</p>
+<div class="highlight-python"><pre>sudo yum install numpy cython h5py python-matplotlib python-nose sphinx</pre>
+</div>
+</li>
+</ul>
+</div>
+<div class="section" id="download-yaff">
+<h2>2.4. Download Yaff<a class="headerlink" href="#download-yaff" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="stable-release">
+<h3>2.4.1. Stable release<a class="headerlink" href="#stable-release" title="Permalink to this headline">¶</a></h3>
+<p>The latest stable release of Yaff can be downloaded here:</p>
+<blockquote>
+<div><a class="reference external" href="http://users.ugent.be/~tovrstra/yaff/yaff-1.0.tar.gz">http://users.ugent.be/~tovrstra/yaff/yaff-1.0.tar.gz</a>.</div></blockquote>
+<p>Choose a suitable directory, e.g. <tt class="docutils literal"><span class="pre">~/build</span></tt>, download and unpack the archive:</p>
+<div class="highlight-python"><pre>mkdir -p ~/build
+cd ~/build
+wget http://users.ugent.be/~tovrstra/yaff/yaff-1.0.tar.gz
+tar -xvzf yaff-1.0.tar.gz
+cd yaff-1.0</pre>
+</div>
+</div>
+<div class="section" id="latest-development-code-experts-only">
+<h3>2.4.2. Latest development code (experts only)<a class="headerlink" href="#latest-development-code-experts-only" title="Permalink to this headline">¶</a></h3>
+<p>In order to get the latest development version of the source code, and to upload
+your own changes, you need to work with git. Git is a version control system
+that makes life easy when a group of people are working on a common source code.
+All information about git (including downloads and tutorials) can be found here:
+<a class="reference external" href="http://git-scm.com/">http://git-scm.com/</a>. The official git URL of Yaff is:
+git://github.com/yaff/yaff.git. In order to <cite>clone</cite> the public Yaff
+repository, run this command:</p>
+<div class="highlight-python"><pre>git clone git://github.com/molmod/yaff.git
+cd yaff</pre>
+</div>
+<p>The version history can be updated with the latest patches with the following
+command:</p>
+<div class="highlight-python"><pre>git pull</pre>
+</div>
+<p>There is also a web interface to Yaff&#8217;s git repository:
+<a class="reference external" href="https://github.com/molmod/yaff">https://github.com/molmod/yaff</a></p>
+</div>
+</div>
+<div class="section" id="install-yaff">
+<h2>2.5. Install Yaff<a class="headerlink" href="#install-yaff" title="Permalink to this headline">¶</a></h2>
+<p>The following command installs Yaff into your home directory.</p>
+<div class="highlight-python"><pre>./setup.py install --user</pre>
+</div>
+<p>You are now ready to start using Yaff!</p>
+</div>
+<div class="section" id="test-your-installation">
+<h2>2.6. Test your installation<a class="headerlink" href="#test-your-installation" title="Permalink to this headline">¶</a></h2>
+<p>Execute the following commands to run the tests:</p>
+<div class="highlight-python"><pre>cd
+nosetests -v yaff</pre>
+</div>
+<p>If some tests fail, post the output of the tests on the <a class="reference external" href="https://groups.google.com/forum/#!forum/ninjaff">Yaff
+mailing list</a>.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">2. Installation</a><ul>
+<li><a class="reference internal" href="#disclaimer">2.1. Disclaimer</a></li>
+<li><a class="reference internal" href="#molmod-dependency">2.2. MolMod dependency</a></li>
+<li><a class="reference internal" href="#external-dependencies">2.3. External dependencies</a></li>
+<li><a class="reference internal" href="#download-yaff">2.4. Download Yaff</a><ul>
+<li><a class="reference internal" href="#stable-release">2.4.1. Stable release</a></li>
+<li><a class="reference internal" href="#latest-development-code-experts-only">2.4.2. Latest development code (experts only)</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#install-yaff">2.5. Install Yaff</a></li>
+<li><a class="reference internal" href="#test-your-installation">2.6. Test your installation</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="ug_features.html"
+                        title="previous chapter">1. Features</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="ug_troubles.html"
+                        title="next chapter">3. If you encounter a problem</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/ug_install.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="ug_troubles.html" title="3. If you encounter a problem"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="ug_features.html" title="1. Features"
+             >previous</a> |</li>
+        <li><a href="index.html">Yaff 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2011, Toon Verstraelen, Louis Vanduyfhuys.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

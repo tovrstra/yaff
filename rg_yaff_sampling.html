@@ -1,0 +1,1858 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>3. yaff.sampling – Phase-space sampling &mdash; Yaff 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Yaff 1.0 documentation" href="index.html" />
+    <link rel="next" title="4. yaff.analysis – Trajectory analysis" href="rg_yaff_analysis.html" />
+    <link rel="prev" title="2. yaff.pes – Force-field potential energy surfaces (PESs)" href="rg_yaff_pes.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="rg_yaff_analysis.html" title="4. yaff.analysis – Trajectory analysis"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="rg_yaff_pes.html" title="2. yaff.pes – Force-field potential energy surfaces (PESs)"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Yaff 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="yaff-sampling-phase-space-sampling">
+<h1>3. <tt class="docutils literal"><span class="pre">yaff.sampling</span></tt> &#8211; Phase-space sampling<a class="headerlink" href="#yaff-sampling-phase-space-sampling" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-yaff.sampling.dof">
+<span id="yaff-sampling-dof-abstraction-layer-for-degrees-of-freedom"></span><h2>3.1. <tt class="docutils literal"><span class="pre">yaff.sampling.dof</span></tt> &#8211; Abstraction layer for degrees of freedom<a class="headerlink" href="#module-yaff.sampling.dof" title="Permalink to this headline">¶</a></h2>
+<p>Abstraction layer for degrees of freedom</p>
+<p>All these classes are called DOF classes, because they specify a set of
+degrees of freedom. These DOF classes are used for geometry/cell optimization
+and harmonic approximations.</p>
+<dl class="class">
+<dt id="yaff.sampling.dof.DOF">
+<em class="property">class </em><tt class="descclassname">yaff.sampling.dof.</tt><tt class="descname">DOF</tt><big>(</big><em>ff</em><big>)</big><a class="headerlink" href="#yaff.sampling.dof.DOF" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<p><strong>Arguments:</strong></p>
+<dl class="docutils">
+<dt>ff</dt>
+<dd>A force field object</dd>
+</dl>
+<dl class="attribute">
+<dt id="yaff.sampling.dof.DOF.ndof">
+<tt class="descname">ndof</tt><a class="headerlink" href="#yaff.sampling.dof.DOF.ndof" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="yaff.sampling.dof.DOF.reset">
+<tt class="descname">reset</tt><big>(</big><big>)</big><a class="headerlink" href="#yaff.sampling.dof.DOF.reset" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="yaff.sampling.dof.DOF.check_delta">
+<tt class="descname">check_delta</tt><big>(</big><em>x=None</em>, <em>eps=0.0001</em>, <em>zero=None</em><big>)</big><a class="headerlink" href="#yaff.sampling.dof.DOF.check_delta" title="Permalink to this definition">¶</a></dt>
+<dd><p>Test the analytical derivatives</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="yaff.sampling.dof.DOF.log">
+<tt class="descname">log</tt><big>(</big><big>)</big><a class="headerlink" href="#yaff.sampling.dof.DOF.log" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="yaff.sampling.dof.CartesianDOF">
+<em class="property">class </em><tt class="descclassname">yaff.sampling.dof.</tt><tt class="descname">CartesianDOF</tt><big>(</big><em>ff</em>, <em>gpos_rms=1e-05</em>, <em>dpos_rms=0.001</em>, <em>select=None</em><big>)</big><a class="headerlink" href="#yaff.sampling.dof.CartesianDOF" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#yaff.sampling.dof.DOF" title="yaff.sampling.dof.DOF"><tt class="xref py py-class docutils literal"><span class="pre">yaff.sampling.dof.DOF</span></tt></a></p>
+<p>Cartesian degrees of freedom</p>
+<p>This DOF is also applicable to periodic systems. Cell parameters are not
+modified when this DOF is used.</p>
+<p><strong>Arguments:</strong></p>
+<dl class="docutils">
+<dt>ff</dt>
+<dd>A force field object.</dd>
+</dl>
+<p><strong>Optional arguments:</strong></p>
+<dl class="docutils">
+<dt>gpos_rms, dpos_rms</dt>
+<dd><p class="first">Thresholds that define the convergence. If all of the actual
+values drop below these thresholds, the minimizer stops.</p>
+<p class="last">For each rms threshold, a corresponding max threshold is
+included automatically. The maximum of the absolute value of a
+component should be smaller than 3/sqrt(N) times the rms
+threshold, where N is the number of degrees of freedom.</p>
+</dd>
+<dt>select</dt>
+<dd>A selection of atoms whose degrees of freedom are included. If
+not list is given, all atomic coordinates are included.</dd>
+</dl>
+<p><strong>Convergence conditions:</strong></p>
+<dl class="docutils">
+<dt>gpos_rms</dt>
+<dd>The root-mean-square of the norm of the gradients of the atoms.</dd>
+<dt>dpos_rms</dt>
+<dd>The root-mean-square of the norm of the displacements of the
+atoms.</dd>
+</dl>
+<dl class="method">
+<dt id="yaff.sampling.dof.CartesianDOF.fun">
+<tt class="descname">fun</tt><big>(</big><em>x</em>, <em>do_gradient=False</em><big>)</big><a class="headerlink" href="#yaff.sampling.dof.CartesianDOF.fun" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes the energy and optionally the gradient.</p>
+<p><strong>Arguments:</strong></p>
+<dl class="docutils">
+<dt>x</dt>
+<dd>The degrees of freedom</dd>
+</dl>
+<p><strong>Optional arguments:</strong></p>
+<dl class="docutils">
+<dt>do_gradient</dt>
+<dd>When True, the gradient is also returned.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="yaff.sampling.dof.CartesianDOF.check_convergence">
+<tt class="descname">check_convergence</tt><big>(</big><big>)</big><a class="headerlink" href="#yaff.sampling.dof.CartesianDOF.check_convergence" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="yaff.sampling.dof.BaseCellDOF">
+<em class="property">class </em><tt class="descclassname">yaff.sampling.dof.</tt><tt class="descname">BaseCellDOF</tt><big>(</big><em>ff</em>, <em>gpos_rms=1e-05</em>, <em>dpos_rms=0.001</em>, <em>grvecs_rms=1e-05</em>, <em>drvecs_rms=0.001</em>, <em>do_frozen=False</em>, <em>freemask=None</em><big>)</big><a class="headerlink" href="#yaff.sampling.dof.BaseCellDOF" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#yaff.sampling.dof.DOF" title="yaff.sampling.dof.DOF"><tt class="xref py py-class docutils literal"><span class="pre">yaff.sampling.dof.DOF</span></tt></a></p>
+<p>Fractional coordinates and cell parameters</p>
+<p>Several subclasses of BaseCellDOF are implemented below. Each one
+considers a specific representation and subset of the cell parameters.</p>
+<p>The following variable names are consistently used (also in subclasses):</p>
+<dl class="docutils">
+<dt>cellvars</dt>
+<dd>An array with all variables for the cell (specific for ja BaseCellDOF
+subclass).</dd>
+<dt>ncellvar</dt>
+<dd>The number of cellvars (at most 9).</dd>
+<dt>celldofs</dt>
+<dd>A selection of the elements in cellvars, based on freemask.</dd>
+<dt>ncelldof</dt>
+<dd>The number of celldofs (less than or equal to ncellvar).</dd>
+<dt>frac</dt>
+<dd>Fractional coordinates.</dd>
+<dt>x</dt>
+<dd>All degrees of freedom, i.e. celldofs and frac (in that order, frac
+is optional).</dd>
+<dt>The suffix 0</dt>
+<dd>Used for initial values of something.</dd>
+</dl>
+<p><strong>Arguments:</strong></p>
+<dl class="docutils">
+<dt>ff</dt>
+<dd>A force field object.</dd>
+</dl>
+<p><strong>Optional arguments:</strong></p>
+<dl class="docutils">
+<dt>gpos_rms, dpos_rms, grvecs_rms, drvecs_rms</dt>
+<dd><p class="first">Thresholds that define the convergence. If all of the actual
+values drop below these thresholds, the minimizer stops.</p>
+<p class="last">For each rms threshold, a corresponding max threshold is
+included automatically. The maximum of the absolute value of a
+component should be smaller than 3/sqrt(N) times the rms
+threshold, where N is the number of degrees of freedom.</p>
+</dd>
+<dt>do_frozen</dt>
+<dd>When True, the fractional coordinates of the atoms are kept
+fixed.</dd>
+<dt>freemask</dt>
+<dd>When given, this must be an array of booleans indicating which
+cellvars are free. At least one cellvar must be free.</dd>
+</dl>
+<p><strong>Convergence conditions:</strong></p>
+<dl class="docutils">
+<dt>gpos_rms</dt>
+<dd>The root-mean-square of the norm of the gradients of the atoms.</dd>
+<dt>dpos_rms</dt>
+<dd>The root-mean-square of the norm of the displacements of the
+atoms.</dd>
+<dt>grvecs_rms</dt>
+<dd>The root-mean-square of the norm of the gradients of the cell
+vectors.</dd>
+<dt>drvecs_rms</dt>
+<dd>The root-mean-square of the norm of the displacements of the
+cell vectors.</dd>
+</dl>
+<dl class="attribute">
+<dt id="yaff.sampling.dof.BaseCellDOF.ncellvar">
+<tt class="descname">ncellvar</tt><a class="headerlink" href="#yaff.sampling.dof.BaseCellDOF.ncellvar" title="Permalink to this definition">¶</a></dt>
+<dd><p>The number of cellvars</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="yaff.sampling.dof.BaseCellDOF.ncelldof">
+<tt class="descname">ncelldof</tt><a class="headerlink" href="#yaff.sampling.dof.BaseCellDOF.ncelldof" title="Permalink to this definition">¶</a></dt>
+<dd><p>The number of celldofs (free cellvars)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="yaff.sampling.dof.BaseCellDOF.fun">
+<tt class="descname">fun</tt><big>(</big><em>x</em>, <em>do_gradient=False</em><big>)</big><a class="headerlink" href="#yaff.sampling.dof.BaseCellDOF.fun" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes the energy and optionally the gradient.</p>
+<p><strong>Arguments:</strong></p>
+<dl class="docutils">
+<dt>x</dt>
+<dd>All degrees of freedom</dd>
+</dl>
+<p><strong>Optional arguments:</strong></p>
+<dl class="docutils">
+<dt>do_gradient</dt>
+<dd>When True, the gradient is also returned.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="yaff.sampling.dof.BaseCellDOF.check_convergence">
+<tt class="descname">check_convergence</tt><big>(</big><big>)</big><a class="headerlink" href="#yaff.sampling.dof.BaseCellDOF.check_convergence" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="yaff.sampling.dof.BaseCellDOF.log">
+<tt class="descname">log</tt><big>(</big><big>)</big><a class="headerlink" href="#yaff.sampling.dof.BaseCellDOF.log" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="yaff.sampling.dof.FullCellDOF">
+<em class="property">class </em><tt class="descclassname">yaff.sampling.dof.</tt><tt class="descname">FullCellDOF</tt><big>(</big><em>ff</em>, <em>gpos_rms=1e-05</em>, <em>dpos_rms=0.001</em>, <em>grvecs_rms=1e-05</em>, <em>drvecs_rms=0.001</em>, <em>do_frozen=False</em>, <em>freemask=None</em><big>)</big><a class="headerlink" href="#yaff.sampling.dof.FullCellDOF" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#yaff.sampling.dof.BaseCellDOF" title="yaff.sampling.dof.BaseCellDOF"><tt class="xref py py-class docutils literal"><span class="pre">yaff.sampling.dof.BaseCellDOF</span></tt></a></p>
+<p>DOF that includes all 9 components of the cell vectors</p>
+<p>The degrees of freedom are rescaled cell vectors ordered in one row:</p>
+<ul class="simple">
+<li>3D periodic: [a_x/s, a_y/s, a_z/s, b_x/s, b_y/s, b_z/s, c_x/s, c_y/s,
+c_z/s] where s is the cube root of the initial cell volume such that
+the cell DOFs become dimensionless.</li>
+<li>2D periodic: [a_x/s, a_y/s, a_z/s, b_x/s, b_y/s, b_z/s] where s is the
+square root of the initial cell surface such that the cell DOFs become
+dimensionless.</li>
+<li>1D periodic: [a_x/s, a_y/s, a_z/s] where s is the length of the initial
+cell vector such that the cell DOFs become dimensionless.</li>
+</ul>
+<p><strong>Arguments:</strong></p>
+<dl class="docutils">
+<dt>ff</dt>
+<dd>A force field object.</dd>
+</dl>
+<p><strong>Optional arguments:</strong></p>
+<dl class="docutils">
+<dt>gpos_rms, dpos_rms, grvecs_rms, drvecs_rms</dt>
+<dd><p class="first">Thresholds that define the convergence. If all of the actual
+values drop below these thresholds, the minimizer stops.</p>
+<p class="last">For each rms threshold, a corresponding max threshold is
+included automatically. The maximum of the absolute value of a
+component should be smaller than 3/sqrt(N) times the rms
+threshold, where N is the number of degrees of freedom.</p>
+</dd>
+<dt>do_frozen</dt>
+<dd>When True, the fractional coordinates of the atoms are kept
+fixed.</dd>
+<dt>freemask</dt>
+<dd>When given, this must be an array of booleans indicating which
+cellvars are free. At least one cellvar must be free.</dd>
+</dl>
+<p><strong>Convergence conditions:</strong></p>
+<dl class="docutils">
+<dt>gpos_rms</dt>
+<dd>The root-mean-square of the norm of the gradients of the atoms.</dd>
+<dt>dpos_rms</dt>
+<dd>The root-mean-square of the norm of the displacements of the
+atoms.</dd>
+<dt>grvecs_rms</dt>
+<dd>The root-mean-square of the norm of the gradients of the cell
+vectors.</dd>
+<dt>drvecs_rms</dt>
+<dd>The root-mean-square of the norm of the displacements of the
+cell vectors.</dd>
+</dl>
+</dd></dl>
+
+<dl class="class">
+<dt id="yaff.sampling.dof.StrainCellDOF">
+<em class="property">class </em><tt class="descclassname">yaff.sampling.dof.</tt><tt class="descname">StrainCellDOF</tt><big>(</big><em>ff</em>, <em>gpos_rms=1e-05</em>, <em>dpos_rms=0.001</em>, <em>grvecs_rms=1e-05</em>, <em>drvecs_rms=0.001</em>, <em>do_frozen=False</em>, <em>freemask=None</em><big>)</big><a class="headerlink" href="#yaff.sampling.dof.StrainCellDOF" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#yaff.sampling.dof.BaseCellDOF" title="yaff.sampling.dof.BaseCellDOF"><tt class="xref py py-class docutils literal"><span class="pre">yaff.sampling.dof.BaseCellDOF</span></tt></a></p>
+<p>Eliminates rotations of the unit cell. thus six cell parameters are free.</p>
+<p>The degrees of freedom are coefficients in symmetrix matrix
+transformation, A, that is applied to  the initial cell vectors.</p>
+<ul class="simple">
+<li>3D periodic: [A_00, A_11, A_22, 2*A_12, 2*A_20, 2*A_01]</li>
+<li>2D periodic: [A_00, A_11, 2*A_01]</li>
+<li>1D periodic: [A_00]</li>
+</ul>
+<p>Why does this work? Let R be the array with cell vectors as rows. It can
+always be written as a product,</p>
+<blockquote>
+<div>R = R_0.F,</div></blockquote>
+<p>where F is an arbitrary 3x3 matrix. Application of SVD to the matrix F
+yields:</p>
+<blockquote>
+<div>R = R_0.U.S.V^T = R_0.U.V^T.V.S.V^T</div></blockquote>
+<p>Then W=U.V^T is a orthonormal matrix and A=V.S.V^T is a symmetric matrix.
+The orthonormal matrix W is merely a rotation of the cell vectors, which
+can be omitted as the internal energy is invariant under such rotations.
+The symmetric matrix actually deforms the cell and is the part of interest.</p>
+<p><strong>Arguments:</strong></p>
+<dl class="docutils">
+<dt>ff</dt>
+<dd>A force field object.</dd>
+</dl>
+<p><strong>Optional arguments:</strong></p>
+<dl class="docutils">
+<dt>gpos_rms, dpos_rms, grvecs_rms, drvecs_rms</dt>
+<dd><p class="first">Thresholds that define the convergence. If all of the actual
+values drop below these thresholds, the minimizer stops.</p>
+<p class="last">For each rms threshold, a corresponding max threshold is
+included automatically. The maximum of the absolute value of a
+component should be smaller than 3/sqrt(N) times the rms
+threshold, where N is the number of degrees of freedom.</p>
+</dd>
+<dt>do_frozen</dt>
+<dd>When True, the fractional coordinates of the atoms are kept
+fixed.</dd>
+<dt>freemask</dt>
+<dd>When given, this must be an array of booleans indicating which
+cellvars are free. At least one cellvar must be free.</dd>
+</dl>
+<p><strong>Convergence conditions:</strong></p>
+<dl class="docutils">
+<dt>gpos_rms</dt>
+<dd>The root-mean-square of the norm of the gradients of the atoms.</dd>
+<dt>dpos_rms</dt>
+<dd>The root-mean-square of the norm of the displacements of the
+atoms.</dd>
+<dt>grvecs_rms</dt>
+<dd>The root-mean-square of the norm of the gradients of the cell
+vectors.</dd>
+<dt>drvecs_rms</dt>
+<dd>The root-mean-square of the norm of the displacements of the
+cell vectors.</dd>
+</dl>
+</dd></dl>
+
+<dl class="class">
+<dt id="yaff.sampling.dof.AnisoCellDOF">
+<em class="property">class </em><tt class="descclassname">yaff.sampling.dof.</tt><tt class="descname">AnisoCellDOF</tt><big>(</big><em>ff</em>, <em>gpos_rms=1e-05</em>, <em>dpos_rms=0.001</em>, <em>grvecs_rms=1e-05</em>, <em>drvecs_rms=0.001</em>, <em>do_frozen=False</em>, <em>freemask=None</em><big>)</big><a class="headerlink" href="#yaff.sampling.dof.AnisoCellDOF" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#yaff.sampling.dof.BaseCellDOF" title="yaff.sampling.dof.BaseCellDOF"><tt class="xref py py-class docutils literal"><span class="pre">yaff.sampling.dof.BaseCellDOF</span></tt></a></p>
+<p>Only the lengths of the cell vectors are free. angles are fixed.</p>
+<p>The degrees of freedom are dimensionless scale factors for the cell
+lengths, using the initial cell vectors as the reference point. (This is
+one DOF per periodic dimension.)</p>
+<p><strong>Arguments:</strong></p>
+<dl class="docutils">
+<dt>ff</dt>
+<dd>A force field object.</dd>
+</dl>
+<p><strong>Optional arguments:</strong></p>
+<dl class="docutils">
+<dt>gpos_rms, dpos_rms, grvecs_rms, drvecs_rms</dt>
+<dd><p class="first">Thresholds that define the convergence. If all of the actual
+values drop below these thresholds, the minimizer stops.</p>
+<p class="last">For each rms threshold, a corresponding max threshold is
+included automatically. The maximum of the absolute value of a
+component should be smaller than 3/sqrt(N) times the rms
+threshold, where N is the number of degrees of freedom.</p>
+</dd>
+<dt>do_frozen</dt>
+<dd>When True, the fractional coordinates of the atoms are kept
+fixed.</dd>
+<dt>freemask</dt>
+<dd>When given, this must be an array of booleans indicating which
+cellvars are free. At least one cellvar must be free.</dd>
+</dl>
+<p><strong>Convergence conditions:</strong></p>
+<dl class="docutils">
+<dt>gpos_rms</dt>
+<dd>The root-mean-square of the norm of the gradients of the atoms.</dd>
+<dt>dpos_rms</dt>
+<dd>The root-mean-square of the norm of the displacements of the
+atoms.</dd>
+<dt>grvecs_rms</dt>
+<dd>The root-mean-square of the norm of the gradients of the cell
+vectors.</dd>
+<dt>drvecs_rms</dt>
+<dd>The root-mean-square of the norm of the displacements of the
+cell vectors.</dd>
+</dl>
+</dd></dl>
+
+<dl class="class">
+<dt id="yaff.sampling.dof.IsoCellDOF">
+<em class="property">class </em><tt class="descclassname">yaff.sampling.dof.</tt><tt class="descname">IsoCellDOF</tt><big>(</big><em>ff</em>, <em>gpos_rms=1e-05</em>, <em>dpos_rms=0.001</em>, <em>grvecs_rms=1e-05</em>, <em>drvecs_rms=0.001</em>, <em>do_frozen=False</em>, <em>freemask=None</em><big>)</big><a class="headerlink" href="#yaff.sampling.dof.IsoCellDOF" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#yaff.sampling.dof.BaseCellDOF" title="yaff.sampling.dof.BaseCellDOF"><tt class="xref py py-class docutils literal"><span class="pre">yaff.sampling.dof.BaseCellDOF</span></tt></a></p>
+<p>The cell is only allowed to undergo isotropic scaling</p>
+<p>The only degree of freedom is an isotropic scaling factor, using the
+initial cell vectors as a reference.</p>
+<p><strong>Arguments:</strong></p>
+<dl class="docutils">
+<dt>ff</dt>
+<dd>A force field object.</dd>
+</dl>
+<p><strong>Optional arguments:</strong></p>
+<dl class="docutils">
+<dt>gpos_rms, dpos_rms, grvecs_rms, drvecs_rms</dt>
+<dd><p class="first">Thresholds that define the convergence. If all of the actual
+values drop below these thresholds, the minimizer stops.</p>
+<p class="last">For each rms threshold, a corresponding max threshold is
+included automatically. The maximum of the absolute value of a
+component should be smaller than 3/sqrt(N) times the rms
+threshold, where N is the number of degrees of freedom.</p>
+</dd>
+<dt>do_frozen</dt>
+<dd>When True, the fractional coordinates of the atoms are kept
+fixed.</dd>
+<dt>freemask</dt>
+<dd>When given, this must be an array of booleans indicating which
+cellvars are free. At least one cellvar must be free.</dd>
+</dl>
+<p><strong>Convergence conditions:</strong></p>
+<dl class="docutils">
+<dt>gpos_rms</dt>
+<dd>The root-mean-square of the norm of the gradients of the atoms.</dd>
+<dt>dpos_rms</dt>
+<dd>The root-mean-square of the norm of the displacements of the
+atoms.</dd>
+<dt>grvecs_rms</dt>
+<dd>The root-mean-square of the norm of the gradients of the cell
+vectors.</dd>
+<dt>drvecs_rms</dt>
+<dd>The root-mean-square of the norm of the displacements of the
+cell vectors.</dd>
+</dl>
+</dd></dl>
+
+<dl class="class">
+<dt id="yaff.sampling.dof.FixedBCDOF">
+<em class="property">class </em><tt class="descclassname">yaff.sampling.dof.</tt><tt class="descname">FixedBCDOF</tt><big>(</big><em>ff</em>, <em>gpos_rms=1e-05</em>, <em>dpos_rms=0.001</em>, <em>grvecs_rms=1e-05</em>, <em>drvecs_rms=0.001</em>, <em>do_frozen=False</em>, <em>freemask=None</em><big>)</big><a class="headerlink" href="#yaff.sampling.dof.FixedBCDOF" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#yaff.sampling.dof.BaseCellDOF" title="yaff.sampling.dof.BaseCellDOF"><tt class="xref py py-class docutils literal"><span class="pre">yaff.sampling.dof.BaseCellDOF</span></tt></a></p>
+<p>A rectangular cell that can only stretch along one axis</p>
+<p>This cell optimization constrains the cell in the y and z direction to the
+original values, but allows expansion and contraction in the x direction.
+The system should be rotated such that the initial cell vectors look like:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">a</span> <span class="o">=</span> <span class="p">(</span> <span class="n">ax</span> <span class="p">,</span> <span class="mi">0</span>  <span class="p">,</span> <span class="mi">0</span>  <span class="p">)</span>
+<span class="n">b</span> <span class="o">=</span> <span class="p">(</span> <span class="mi">0</span>  <span class="p">,</span> <span class="n">by</span> <span class="p">,</span> <span class="n">bz</span> <span class="p">)</span>
+<span class="n">c</span> <span class="o">=</span> <span class="p">(</span> <span class="mi">0</span>  <span class="p">,</span> <span class="n">cy</span> <span class="p">,</span> <span class="n">cz</span> <span class="p">)</span>
+</pre></div>
+</div>
+<p>During optimization, only ax will be allowed to change.</p>
+<p>This type of constraint can be used when looking at a structure that is
+periodic only in one dimension, but you have to fake a 3D structure to
+be able to use Ewald summation</p>
+<p><strong>Arguments:</strong></p>
+<dl class="docutils">
+<dt>ff</dt>
+<dd>A force field object.</dd>
+</dl>
+<p><strong>Optional arguments:</strong></p>
+<dl class="docutils">
+<dt>gpos_rms, dpos_rms, grvecs_rms, drvecs_rms</dt>
+<dd><p class="first">Thresholds that define the convergence. If all of the actual
+values drop below these thresholds, the minimizer stops.</p>
+<p class="last">For each rms threshold, a corresponding max threshold is
+included automatically. The maximum of the absolute value of a
+component should be smaller than 3/sqrt(N) times the rms
+threshold, where N is the number of degrees of freedom.</p>
+</dd>
+<dt>do_frozen</dt>
+<dd>When True, the fractional coordinates of the atoms are kept
+fixed.</dd>
+<dt>freemask</dt>
+<dd>When given, this must be an array of booleans indicating which
+cellvars are free. At least one cellvar must be free.</dd>
+</dl>
+<p><strong>Convergence conditions:</strong></p>
+<dl class="docutils">
+<dt>gpos_rms</dt>
+<dd>The root-mean-square of the norm of the gradients of the atoms.</dd>
+<dt>dpos_rms</dt>
+<dd>The root-mean-square of the norm of the displacements of the
+atoms.</dd>
+<dt>grvecs_rms</dt>
+<dd>The root-mean-square of the norm of the gradients of the cell
+vectors.</dd>
+<dt>drvecs_rms</dt>
+<dd>The root-mean-square of the norm of the displacements of the
+cell vectors.</dd>
+</dl>
+</dd></dl>
+
+<dl class="class">
+<dt id="yaff.sampling.dof.FixedVolOrthoCellDOF">
+<em class="property">class </em><tt class="descclassname">yaff.sampling.dof.</tt><tt class="descname">FixedVolOrthoCellDOF</tt><big>(</big><em>ff</em>, <em>volume=None</em>, <em>gpos_rms=1e-05</em>, <em>dpos_rms=0.001</em>, <em>grvecs_rms=1e-05</em>, <em>drvecs_rms=0.001</em>, <em>do_frozen=False</em>, <em>freemask=None</em><big>)</big><a class="headerlink" href="#yaff.sampling.dof.FixedVolOrthoCellDOF" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#yaff.sampling.dof.BaseCellDOF" title="yaff.sampling.dof.BaseCellDOF"><tt class="xref py py-class docutils literal"><span class="pre">yaff.sampling.dof.BaseCellDOF</span></tt></a></p>
+<p>Orthorombic cell optimizer with a fixed volume.</p>
+<p>These constraints are implemented by using the following cell vectors:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">a</span> <span class="o">=</span> <span class="p">(</span>  <span class="n">s</span><span class="o">*</span><span class="n">a0</span><span class="o">*</span><span class="n">la</span>  <span class="p">,</span>     <span class="mi">0</span>     <span class="p">,</span>      <span class="mi">0</span>         <span class="p">)</span>
+<span class="n">b</span> <span class="o">=</span> <span class="p">(</span>     <span class="mi">0</span>     <span class="p">,</span>  <span class="n">s</span><span class="o">*</span><span class="n">b0</span><span class="o">*</span><span class="n">lb</span>  <span class="p">,</span>      <span class="mi">0</span>         <span class="p">)</span>
+<span class="n">c</span> <span class="o">=</span> <span class="p">(</span>     <span class="mi">0</span>     <span class="p">,</span>     <span class="mi">0</span>     <span class="p">,</span>  <span class="n">s</span><span class="o">*</span><span class="n">c0</span><span class="o">/</span><span class="p">(</span><span class="n">la</span><span class="o">*</span><span class="n">lb</span><span class="p">)</span>  <span class="p">)</span>
+</pre></div>
+</div>
+<p>with s = (V/V0)^(1/3)</p>
+<p><strong>Optional arguments (in addition to those of BaseCellDOF):</strong></p>
+<dl class="docutils">
+<dt>volume</dt>
+<dd>The desired volume of the cell. (When not given, the current
+volume of the system is not altered.)</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-yaff.sampling.harmonic">
+<span id="yaff-sampling-harmonic-harmonic-models"></span><h2>3.2. <tt class="docutils literal"><span class="pre">yaff.sampling.harmonic</span></tt> &#8211; Harmonic models<a class="headerlink" href="#module-yaff.sampling.harmonic" title="Permalink to this headline">¶</a></h2>
+<p>Harmonic models</p>
+<dl class="function">
+<dt id="yaff.sampling.harmonic.estimate_hessian">
+<tt class="descclassname">yaff.sampling.harmonic.</tt><tt class="descname">estimate_hessian</tt><big>(</big><em>dof</em>, <em>eps=0.0001</em><big>)</big><a class="headerlink" href="#yaff.sampling.harmonic.estimate_hessian" title="Permalink to this definition">¶</a></dt>
+<dd><p>Estimate the Hessian using the symmetric finite difference approximation.</p>
+<p><strong>Arguments:</strong></p>
+<dl class="docutils">
+<dt>dof</dt>
+<dd>A DOF object</dd>
+</dl>
+<p><strong>Optional arguments:</strong></p>
+<dl class="docutils">
+<dt>eps</dt>
+<dd>The magnitude of the displacements</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="yaff.sampling.harmonic.estimate_cart_hessian">
+<tt class="descclassname">yaff.sampling.harmonic.</tt><tt class="descname">estimate_cart_hessian</tt><big>(</big><em>ff</em>, <em>eps=0.0001</em>, <em>select=None</em><big>)</big><a class="headerlink" href="#yaff.sampling.harmonic.estimate_cart_hessian" title="Permalink to this definition">¶</a></dt>
+<dd><p>Estimate the Cartesian Hessian with symmetric finite differences.</p>
+<p><strong>Arguments:</strong></p>
+<dl class="docutils">
+<dt>ff</dt>
+<dd>A force field object</dd>
+</dl>
+<p><strong>Optional arguments:</strong></p>
+<dl class="docutils">
+<dt>eps</dt>
+<dd>The magnitude of the Cartesian displacements</dd>
+<dt>select</dt>
+<dd>A selection of atoms for which the hessian must be computed. If not
+given, the entire hessian is computed.</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="yaff.sampling.harmonic.estimate_elastic">
+<tt class="descclassname">yaff.sampling.harmonic.</tt><tt class="descname">estimate_elastic</tt><big>(</big><em>ff</em>, <em>eps=0.0001</em>, <em>do_frozen=False</em>, <em>ridge=0.0001</em><big>)</big><a class="headerlink" href="#yaff.sampling.harmonic.estimate_elastic" title="Permalink to this definition">¶</a></dt>
+<dd><p>Estimate the elastic constants using the symmetric finite difference
+approximation.</p>
+<p><strong>Arguments:</strong></p>
+<dl class="docutils">
+<dt>ff</dt>
+<dd>A force field object</dd>
+</dl>
+<p><strong>Optional arguments:</strong></p>
+<dl class="docutils">
+<dt>eps</dt>
+<dd>The magnitude of the Cartesian displacements</dd>
+<dt>do_frozen</dt>
+<dd>By default this is False, which means that the changes in fractional
+atomic coordinates due to cell deformations are properly taken into
+account. When this is set to True, such displacements (other than
+uniform scaling) are ignored. The latter is much faster, but only
+correct for the simplest materials.</dd>
+<dt>ridge</dt>
+<dd>Threshold for the eigenvalues of the Cartesian Hessian. This only
+matters if <tt class="docutils literal"><span class="pre">do_frozen==False</span></tt>.</dd>
+</dl>
+<p>The elastic constants are second order derivatives of the strain energy
+density with respect to uniform deformations. At the molecular scale,
+uniform deformations can be describe by a linear transformation of the
+atoms and the cell parameters:</p>
+<div class="highlight-python"><pre>x' = e . x0</pre>
+</div>
+<p>When x0 corresponds to the reference point for the second order
+expansion, small deviations from that reference point correspond to small
+deviations of e from the unit matrix. The strain energy density is
+nothing but the energy of the system divided by its volume, minus a the
+energy density of the fully relaxed system. The adjective <cite>strain</cite> refers
+to deviations from the relaxed reference. When computing the second order
+derivatives, this reference point can be ignored. Assuming the reference
+point is the relaxed system, the strain energy density can be
+approximated to second order as:</p>
+<div class="highlight-python"><pre>u = 1/2 \sum_ijkl e_ij c_ijkl e_kl</pre>
+</div>
+<p>In this equation the matrix c_ijkl contains all the elastic constants.
+In principle, it contains 81 values, but due to symmetry considerations,
+only 21 of these values are independent. [The symmetry considerations are
+as follows: (i) it is sufficient to consider symmetric deformations e
+when excluding cell rotations, (ii) the index pairs (ij) and (kl) are
+interchangeable.] These 21 numbers are typically represented using the
+(inclusive) lower diagonal of a 6x6 matrix, using the following
+convention to map pair indexes (ij) and (kl) onto single indexes n and m:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="67%" />
+<col width="33%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">(ij) or (kl)</th>
+<th class="head">n or m</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>11</td>
+<td>1</td>
+</tr>
+<tr class="row-odd"><td>22</td>
+<td>2</td>
+</tr>
+<tr class="row-even"><td>22</td>
+<td>3</td>
+</tr>
+<tr class="row-odd"><td>23</td>
+<td>4</td>
+</tr>
+<tr class="row-even"><td>31</td>
+<td>5</td>
+</tr>
+<tr class="row-odd"><td>12</td>
+<td>6</td>
+</tr>
+</tbody>
+</table>
+<p>(This table is also known as the compressed Voight notation.)</p>
+<p>This routine returns the elastic constants in a symmetric 6x6 matrix,
+using the index conventions by Voight.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-yaff.sampling.io">
+<span id="yaff-sampling-io-trajectory-writers"></span><h2>3.3. <tt class="docutils literal"><span class="pre">yaff.sampling.io</span></tt> &#8211; Trajectory writers<a class="headerlink" href="#module-yaff.sampling.io" title="Permalink to this headline">¶</a></h2>
+<p>Trajectory writers</p>
+<dl class="class">
+<dt id="yaff.sampling.io.HDF5Writer">
+<em class="property">class </em><tt class="descclassname">yaff.sampling.io.</tt><tt class="descname">HDF5Writer</tt><big>(</big><em>f</em>, <em>start=0</em>, <em>step=1</em><big>)</big><a class="headerlink" href="#yaff.sampling.io.HDF5Writer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#yaff.sampling.iterative.Hook" title="yaff.sampling.iterative.Hook"><tt class="xref py py-class docutils literal"><span class="pre">yaff.sampling.iterative.Hook</span></tt></a></p>
+<p><strong>Argument:</strong></p>
+<dl class="docutils">
+<dt>f</dt>
+<dd>A h5.File object to write the trajectory to.</dd>
+</dl>
+<p><strong>Optional arguments:</strong></p>
+<dl class="docutils">
+<dt>start</dt>
+<dd>The first iteration at which this hook should be called.</dd>
+<dt>step</dt>
+<dd>The hook will be called every <cite>step</cite> iterations.</dd>
+</dl>
+<dl class="method">
+<dt id="yaff.sampling.io.HDF5Writer.__call__">
+<tt class="descname">__call__</tt><big>(</big><em>iterative</em><big>)</big><a class="headerlink" href="#yaff.sampling.io.HDF5Writer.__call__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="yaff.sampling.io.HDF5Writer.dump_system">
+<tt class="descname">dump_system</tt><big>(</big><em>system</em><big>)</big><a class="headerlink" href="#yaff.sampling.io.HDF5Writer.dump_system" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="yaff.sampling.io.HDF5Writer.init_trajectory">
+<tt class="descname">init_trajectory</tt><big>(</big><em>iterative</em><big>)</big><a class="headerlink" href="#yaff.sampling.io.HDF5Writer.init_trajectory" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="yaff.sampling.io.XYZWriter">
+<em class="property">class </em><tt class="descclassname">yaff.sampling.io.</tt><tt class="descname">XYZWriter</tt><big>(</big><em>fn_xyz</em>, <em>select=None</em>, <em>start=0</em>, <em>step=1</em><big>)</big><a class="headerlink" href="#yaff.sampling.io.XYZWriter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#yaff.sampling.iterative.Hook" title="yaff.sampling.iterative.Hook"><tt class="xref py py-class docutils literal"><span class="pre">yaff.sampling.iterative.Hook</span></tt></a></p>
+<p><strong>Argument:</strong></p>
+<dl class="docutils">
+<dt>fn_xyz</dt>
+<dd>A filename to write the XYZ trajectory too.</dd>
+</dl>
+<p><strong>Optional arguments:</strong></p>
+<dl class="docutils">
+<dt>select</dt>
+<dd>A list of atom indexes that should be written to the trajectory
+output. If not given, all atoms are included.</dd>
+<dt>start</dt>
+<dd>The first iteration at which this hook should be called.</dd>
+<dt>step</dt>
+<dd>The hook will be called every <cite>step</cite> iterations.</dd>
+</dl>
+<dl class="method">
+<dt id="yaff.sampling.io.XYZWriter.__call__">
+<tt class="descname">__call__</tt><big>(</big><em>iterative</em><big>)</big><a class="headerlink" href="#yaff.sampling.io.XYZWriter.__call__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-yaff.sampling.iterative">
+<span id="yaff-sampling-iterative-base-class-for-iterative-algorithms"></span><h2>3.4. <tt class="docutils literal"><span class="pre">yaff.sampling.iterative</span></tt> &#8211; Base class for iterative algorithms<a class="headerlink" href="#module-yaff.sampling.iterative" title="Permalink to this headline">¶</a></h2>
+<p>Base class for iterative algorithms</p>
+<dl class="class">
+<dt id="yaff.sampling.iterative.Iterative">
+<em class="property">class </em><tt class="descclassname">yaff.sampling.iterative.</tt><tt class="descname">Iterative</tt><big>(</big><em>ff</em>, <em>state=None</em>, <em>hooks=None</em>, <em>counter0=0</em><big>)</big><a class="headerlink" href="#yaff.sampling.iterative.Iterative" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<p><strong>Arguments:</strong></p>
+<dl class="docutils">
+<dt>ff</dt>
+<dd>The ForceField instance used in the iterative algorithm</dd>
+</dl>
+<p><strong>Optional arguments:</strong></p>
+<dl class="docutils">
+<dt>state</dt>
+<dd>A list with state items. State items are simple objects
+that take or derive a property from the current state of the
+iterative algorithm.</dd>
+<dt>hooks</dt>
+<dd>A function (or a list of functions) that is called after every
+iterative.</dd>
+<dt>counter0</dt>
+<dd>The counter value associated with the initial state.</dd>
+</dl>
+<dl class="method">
+<dt id="yaff.sampling.iterative.Iterative.call_hooks">
+<tt class="descname">call_hooks</tt><big>(</big><big>)</big><a class="headerlink" href="#yaff.sampling.iterative.Iterative.call_hooks" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="yaff.sampling.iterative.Iterative.default_state">
+<tt class="descname">default_state</tt><em class="property"> = []</em><a class="headerlink" href="#yaff.sampling.iterative.Iterative.default_state" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="yaff.sampling.iterative.Iterative.finalize">
+<tt class="descname">finalize</tt><big>(</big><big>)</big><a class="headerlink" href="#yaff.sampling.iterative.Iterative.finalize" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="yaff.sampling.iterative.Iterative.initialize">
+<tt class="descname">initialize</tt><big>(</big><big>)</big><a class="headerlink" href="#yaff.sampling.iterative.Iterative.initialize" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="yaff.sampling.iterative.Iterative.log_name">
+<tt class="descname">log_name</tt><em class="property"> = 'ITER'</em><a class="headerlink" href="#yaff.sampling.iterative.Iterative.log_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="yaff.sampling.iterative.Iterative.propagate">
+<tt class="descname">propagate</tt><big>(</big><big>)</big><a class="headerlink" href="#yaff.sampling.iterative.Iterative.propagate" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="yaff.sampling.iterative.Iterative.run">
+<tt class="descname">run</tt><big>(</big><em>nstep=None</em><big>)</big><a class="headerlink" href="#yaff.sampling.iterative.Iterative.run" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="yaff.sampling.iterative.StateItem">
+<em class="property">class </em><tt class="descclassname">yaff.sampling.iterative.</tt><tt class="descname">StateItem</tt><big>(</big><em>key</em><big>)</big><a class="headerlink" href="#yaff.sampling.iterative.StateItem" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<dl class="method">
+<dt id="yaff.sampling.iterative.StateItem.copy">
+<tt class="descname">copy</tt><big>(</big><big>)</big><a class="headerlink" href="#yaff.sampling.iterative.StateItem.copy" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="yaff.sampling.iterative.StateItem.get_value">
+<tt class="descname">get_value</tt><big>(</big><em>iterative</em><big>)</big><a class="headerlink" href="#yaff.sampling.iterative.StateItem.get_value" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="yaff.sampling.iterative.StateItem.iter_attrs">
+<tt class="descname">iter_attrs</tt><big>(</big><em>iterative</em><big>)</big><a class="headerlink" href="#yaff.sampling.iterative.StateItem.iter_attrs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="yaff.sampling.iterative.StateItem.update">
+<tt class="descname">update</tt><big>(</big><em>iterative</em><big>)</big><a class="headerlink" href="#yaff.sampling.iterative.StateItem.update" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="yaff.sampling.iterative.AttributeStateItem">
+<em class="property">class </em><tt class="descclassname">yaff.sampling.iterative.</tt><tt class="descname">AttributeStateItem</tt><big>(</big><em>key</em><big>)</big><a class="headerlink" href="#yaff.sampling.iterative.AttributeStateItem" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#yaff.sampling.iterative.StateItem" title="yaff.sampling.iterative.StateItem"><tt class="xref py py-class docutils literal"><span class="pre">yaff.sampling.iterative.StateItem</span></tt></a></p>
+<dl class="method">
+<dt id="yaff.sampling.iterative.AttributeStateItem.copy">
+<tt class="descname">copy</tt><big>(</big><big>)</big><a class="headerlink" href="#yaff.sampling.iterative.AttributeStateItem.copy" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="yaff.sampling.iterative.AttributeStateItem.get_value">
+<tt class="descname">get_value</tt><big>(</big><em>iterative</em><big>)</big><a class="headerlink" href="#yaff.sampling.iterative.AttributeStateItem.get_value" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="yaff.sampling.iterative.PosStateItem">
+<em class="property">class </em><tt class="descclassname">yaff.sampling.iterative.</tt><tt class="descname">PosStateItem</tt><a class="headerlink" href="#yaff.sampling.iterative.PosStateItem" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#yaff.sampling.iterative.StateItem" title="yaff.sampling.iterative.StateItem"><tt class="xref py py-class docutils literal"><span class="pre">yaff.sampling.iterative.StateItem</span></tt></a></p>
+<dl class="method">
+<dt id="yaff.sampling.iterative.PosStateItem.get_value">
+<tt class="descname">get_value</tt><big>(</big><em>iterative</em><big>)</big><a class="headerlink" href="#yaff.sampling.iterative.PosStateItem.get_value" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="yaff.sampling.iterative.DipoleStateItem">
+<em class="property">class </em><tt class="descclassname">yaff.sampling.iterative.</tt><tt class="descname">DipoleStateItem</tt><a class="headerlink" href="#yaff.sampling.iterative.DipoleStateItem" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#yaff.sampling.iterative.StateItem" title="yaff.sampling.iterative.StateItem"><tt class="xref py py-class docutils literal"><span class="pre">yaff.sampling.iterative.StateItem</span></tt></a></p>
+<dl class="method">
+<dt id="yaff.sampling.iterative.DipoleStateItem.get_value">
+<tt class="descname">get_value</tt><big>(</big><em>iterative</em><big>)</big><a class="headerlink" href="#yaff.sampling.iterative.DipoleStateItem.get_value" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="yaff.sampling.iterative.DipoleVelStateItem">
+<em class="property">class </em><tt class="descclassname">yaff.sampling.iterative.</tt><tt class="descname">DipoleVelStateItem</tt><a class="headerlink" href="#yaff.sampling.iterative.DipoleVelStateItem" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#yaff.sampling.iterative.StateItem" title="yaff.sampling.iterative.StateItem"><tt class="xref py py-class docutils literal"><span class="pre">yaff.sampling.iterative.StateItem</span></tt></a></p>
+<dl class="method">
+<dt id="yaff.sampling.iterative.DipoleVelStateItem.get_value">
+<tt class="descname">get_value</tt><big>(</big><em>iterative</em><big>)</big><a class="headerlink" href="#yaff.sampling.iterative.DipoleVelStateItem.get_value" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="yaff.sampling.iterative.VolumeStateItem">
+<em class="property">class </em><tt class="descclassname">yaff.sampling.iterative.</tt><tt class="descname">VolumeStateItem</tt><a class="headerlink" href="#yaff.sampling.iterative.VolumeStateItem" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#yaff.sampling.iterative.StateItem" title="yaff.sampling.iterative.StateItem"><tt class="xref py py-class docutils literal"><span class="pre">yaff.sampling.iterative.StateItem</span></tt></a></p>
+<dl class="method">
+<dt id="yaff.sampling.iterative.VolumeStateItem.get_value">
+<tt class="descname">get_value</tt><big>(</big><em>iterative</em><big>)</big><a class="headerlink" href="#yaff.sampling.iterative.VolumeStateItem.get_value" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="yaff.sampling.iterative.CellStateItem">
+<em class="property">class </em><tt class="descclassname">yaff.sampling.iterative.</tt><tt class="descname">CellStateItem</tt><a class="headerlink" href="#yaff.sampling.iterative.CellStateItem" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#yaff.sampling.iterative.StateItem" title="yaff.sampling.iterative.StateItem"><tt class="xref py py-class docutils literal"><span class="pre">yaff.sampling.iterative.StateItem</span></tt></a></p>
+<dl class="method">
+<dt id="yaff.sampling.iterative.CellStateItem.get_value">
+<tt class="descname">get_value</tt><big>(</big><em>iterative</em><big>)</big><a class="headerlink" href="#yaff.sampling.iterative.CellStateItem.get_value" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="yaff.sampling.iterative.EPotContribStateItem">
+<em class="property">class </em><tt class="descclassname">yaff.sampling.iterative.</tt><tt class="descname">EPotContribStateItem</tt><a class="headerlink" href="#yaff.sampling.iterative.EPotContribStateItem" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#yaff.sampling.iterative.StateItem" title="yaff.sampling.iterative.StateItem"><tt class="xref py py-class docutils literal"><span class="pre">yaff.sampling.iterative.StateItem</span></tt></a></p>
+<p>Keeps track of all the contributions to the potential energy.</p>
+<dl class="method">
+<dt id="yaff.sampling.iterative.EPotContribStateItem.get_value">
+<tt class="descname">get_value</tt><big>(</big><em>iterative</em><big>)</big><a class="headerlink" href="#yaff.sampling.iterative.EPotContribStateItem.get_value" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="yaff.sampling.iterative.EPotContribStateItem.iter_attrs">
+<tt class="descname">iter_attrs</tt><big>(</big><em>iterative</em><big>)</big><a class="headerlink" href="#yaff.sampling.iterative.EPotContribStateItem.iter_attrs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="yaff.sampling.iterative.EpotBondsStateItem">
+<em class="property">class </em><tt class="descclassname">yaff.sampling.iterative.</tt><tt class="descname">EpotBondsStateItem</tt><big>(</big><em>do_ei=False</em><big>)</big><a class="headerlink" href="#yaff.sampling.iterative.EpotBondsStateItem" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#yaff.sampling.iterative.StateItem" title="yaff.sampling.iterative.StateItem"><tt class="xref py py-class docutils literal"><span class="pre">yaff.sampling.iterative.StateItem</span></tt></a></p>
+<p>Keeps track of all the Valence Bond contributions to the potential energy.</p>
+<p><strong>Optional arguments:</strong></p>
+<dl class="docutils">
+<dt>do_ei</dt>
+<dd>If True, the electrostatic contributions of the bonded atom pair
+will also be tracked.</dd>
+</dl>
+<dl class="method">
+<dt id="yaff.sampling.iterative.EpotBondsStateItem.get_value">
+<tt class="descname">get_value</tt><big>(</big><em>iterative</em><big>)</big><a class="headerlink" href="#yaff.sampling.iterative.EpotBondsStateItem.get_value" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="yaff.sampling.iterative.EpotBondsStateItem.iter_atts">
+<tt class="descname">iter_atts</tt><big>(</big><em>iterative</em><big>)</big><a class="headerlink" href="#yaff.sampling.iterative.EpotBondsStateItem.iter_atts" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="yaff.sampling.iterative.EpotBendsStateItem">
+<em class="property">class </em><tt class="descclassname">yaff.sampling.iterative.</tt><tt class="descname">EpotBendsStateItem</tt><big>(</big><em>do_ei=False</em><big>)</big><a class="headerlink" href="#yaff.sampling.iterative.EpotBendsStateItem" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#yaff.sampling.iterative.StateItem" title="yaff.sampling.iterative.StateItem"><tt class="xref py py-class docutils literal"><span class="pre">yaff.sampling.iterative.StateItem</span></tt></a></p>
+<p>Keeps track of all the Valence Bend contributions to the potential energy</p>
+<p><strong>Optional arguments:</strong></p>
+<dl class="docutils">
+<dt>do_ei</dt>
+<dd>If True, the electrostatic contributions of the 1-3 non-bonded
+atom pair will also be tracked.</dd>
+</dl>
+<dl class="method">
+<dt id="yaff.sampling.iterative.EpotBendsStateItem.get_value">
+<tt class="descname">get_value</tt><big>(</big><em>iterative</em><big>)</big><a class="headerlink" href="#yaff.sampling.iterative.EpotBendsStateItem.get_value" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="yaff.sampling.iterative.EpotBendsStateItem.iter_atts">
+<tt class="descname">iter_atts</tt><big>(</big><em>iterative</em><big>)</big><a class="headerlink" href="#yaff.sampling.iterative.EpotBendsStateItem.iter_atts" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="yaff.sampling.iterative.EpotDihedsStateItem">
+<em class="property">class </em><tt class="descclassname">yaff.sampling.iterative.</tt><tt class="descname">EpotDihedsStateItem</tt><big>(</big><em>do_ei=False</em><big>)</big><a class="headerlink" href="#yaff.sampling.iterative.EpotDihedsStateItem" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#yaff.sampling.iterative.StateItem" title="yaff.sampling.iterative.StateItem"><tt class="xref py py-class docutils literal"><span class="pre">yaff.sampling.iterative.StateItem</span></tt></a></p>
+<p>Keeps track of all the Valence Dihedral contributions to the potential energy</p>
+<p><strong>Optional arguments:</strong></p>
+<dl class="docutils">
+<dt>do_ei</dt>
+<dd>If True, the electrostatic contributions of the 1-4 non-bonded
+atom pair will also be tracked.</dd>
+</dl>
+<dl class="method">
+<dt id="yaff.sampling.iterative.EpotDihedsStateItem.get_value">
+<tt class="descname">get_value</tt><big>(</big><em>iterative</em><big>)</big><a class="headerlink" href="#yaff.sampling.iterative.EpotDihedsStateItem.get_value" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="yaff.sampling.iterative.EpotDihedsStateItem.iter_atts">
+<tt class="descname">iter_atts</tt><big>(</big><em>iterative</em><big>)</big><a class="headerlink" href="#yaff.sampling.iterative.EpotDihedsStateItem.iter_atts" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="yaff.sampling.iterative.Hook">
+<em class="property">class </em><tt class="descclassname">yaff.sampling.iterative.</tt><tt class="descname">Hook</tt><big>(</big><em>start=0</em>, <em>step=1</em><big>)</big><a class="headerlink" href="#yaff.sampling.iterative.Hook" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<p><strong>Optional arguments:</strong></p>
+<dl class="docutils">
+<dt>start</dt>
+<dd>The first iteration at which this hook should be called.</dd>
+<dt>step</dt>
+<dd>The hook will be called every <cite>step</cite> iterations.</dd>
+</dl>
+<dl class="method">
+<dt id="yaff.sampling.iterative.Hook.__call__">
+<tt class="descname">__call__</tt><big>(</big><em>iterative</em><big>)</big><a class="headerlink" href="#yaff.sampling.iterative.Hook.__call__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="yaff.sampling.iterative.Hook.expects_call">
+<tt class="descname">expects_call</tt><big>(</big><em>counter</em><big>)</big><a class="headerlink" href="#yaff.sampling.iterative.Hook.expects_call" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-yaff.sampling.npt">
+<span id="yaff-sampling-npt-barostats"></span><h2>3.5. <tt class="docutils literal"><span class="pre">yaff.sampling.npt</span></tt> &#8211; Barostats<a class="headerlink" href="#module-yaff.sampling.npt" title="Permalink to this headline">¶</a></h2>
+<p>Barostats</p>
+<dl class="class">
+<dt id="yaff.sampling.npt.AndersenMcDonaldBarostat">
+<em class="property">class </em><tt class="descclassname">yaff.sampling.npt.</tt><tt class="descname">AndersenMcDonaldBarostat</tt><big>(</big><em>temp</em>, <em>press</em>, <em>start=0</em>, <em>step=1</em>, <em>amp=0.001</em><big>)</big><a class="headerlink" href="#yaff.sampling.npt.AndersenMcDonaldBarostat" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#yaff.sampling.verlet.VerletHook" title="yaff.sampling.verlet.VerletHook"><tt class="xref py py-class docutils literal"><span class="pre">yaff.sampling.verlet.VerletHook</span></tt></a></p>
+<p>Warning: this code is not fully tested yet!</p>
+<p><strong>Arguments:</strong></p>
+<dl class="docutils">
+<dt>temp</dt>
+<dd>The average temperature of the NpT ensemble</dd>
+<dt>press</dt>
+<dd>The external pressure of the NpT ensemble</dd>
+</dl>
+<p><strong>Optional arguments:</strong></p>
+<dl class="docutils">
+<dt>start</dt>
+<dd>The first iteration at which this hook is called</dd>
+<dt>step</dt>
+<dd>The number of iterations between two subsequent calls to this
+hook.</dd>
+<dt>amp</dt>
+<dd>The amplitude of the changes in the logarithm of the volume.</dd>
+</dl>
+<dl class="method">
+<dt id="yaff.sampling.npt.AndersenMcDonaldBarostat.init">
+<tt class="descname">init</tt><big>(</big><em>iterative</em><big>)</big><a class="headerlink" href="#yaff.sampling.npt.AndersenMcDonaldBarostat.init" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="yaff.sampling.npt.AndersenMcDonaldBarostat.pre">
+<tt class="descname">pre</tt><big>(</big><em>iterative</em><big>)</big><a class="headerlink" href="#yaff.sampling.npt.AndersenMcDonaldBarostat.pre" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="yaff.sampling.npt.AndersenMcDonaldBarostat.post">
+<tt class="descname">post</tt><big>(</big><em>iterative</em><big>)</big><a class="headerlink" href="#yaff.sampling.npt.AndersenMcDonaldBarostat.post" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-yaff.sampling.nvt">
+<span id="yaff-sampling-nvt-thermostats"></span><h2>3.6. <tt class="docutils literal"><span class="pre">yaff.sampling.nvt</span></tt> &#8211; Thermostats<a class="headerlink" href="#module-yaff.sampling.nvt" title="Permalink to this headline">¶</a></h2>
+<p>Thermostats</p>
+<dl class="class">
+<dt id="yaff.sampling.nvt.AndersenThermostat">
+<em class="property">class </em><tt class="descclassname">yaff.sampling.nvt.</tt><tt class="descname">AndersenThermostat</tt><big>(</big><em>temp</em>, <em>start=0</em>, <em>step=1</em>, <em>select=None</em>, <em>annealing=1.0</em><big>)</big><a class="headerlink" href="#yaff.sampling.nvt.AndersenThermostat" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#yaff.sampling.verlet.VerletHook" title="yaff.sampling.verlet.VerletHook"><tt class="xref py py-class docutils literal"><span class="pre">yaff.sampling.verlet.VerletHook</span></tt></a></p>
+<p>This is an implementation of the Andersen thermostat. The method
+is described in:</p>
+<blockquote>
+<div>Andersen, H. C. J. Chem. Phys. 1980, 72, 2384-2393.</div></blockquote>
+<p><strong>Arguments:</strong></p>
+<dl class="docutils">
+<dt>temp</dt>
+<dd>The average temperature of the NVT ensemble</dd>
+</dl>
+<p><strong>Optional arguments:</strong></p>
+<dl class="docutils">
+<dt>start</dt>
+<dd>The first iteration at which this hook is called</dd>
+<dt>step</dt>
+<dd>The number of iterations between two subsequent calls to this
+hook.</dd>
+<dt>select</dt>
+<dd>An array of atom indexes to indicate which atoms controlled by
+the thermostat.</dd>
+<dt>annealing</dt>
+<dd>After every call to this hook, the temperature is multiplied
+with this annealing factor. This effectively cools down the
+system.</dd>
+</dl>
+<dl class="method">
+<dt id="yaff.sampling.nvt.AndersenThermostat.init">
+<tt class="descname">init</tt><big>(</big><em>iterative</em><big>)</big><a class="headerlink" href="#yaff.sampling.nvt.AndersenThermostat.init" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="yaff.sampling.nvt.AndersenThermostat.pre">
+<tt class="descname">pre</tt><big>(</big><em>iterative</em><big>)</big><a class="headerlink" href="#yaff.sampling.nvt.AndersenThermostat.pre" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="yaff.sampling.nvt.AndersenThermostat.post">
+<tt class="descname">post</tt><big>(</big><em>iterative</em><big>)</big><a class="headerlink" href="#yaff.sampling.nvt.AndersenThermostat.post" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="yaff.sampling.nvt.NHCThermostat">
+<em class="property">class </em><tt class="descclassname">yaff.sampling.nvt.</tt><tt class="descname">NHCThermostat</tt><big>(</big><em>temp</em>, <em>start=0</em>, <em>timecon=4134.137333664683</em>, <em>chainlength=3</em><big>)</big><a class="headerlink" href="#yaff.sampling.nvt.NHCThermostat" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#yaff.sampling.verlet.VerletHook" title="yaff.sampling.verlet.VerletHook"><tt class="xref py py-class docutils literal"><span class="pre">yaff.sampling.verlet.VerletHook</span></tt></a></p>
+<p>This hook implements the Nose-Hoover-Chain thermostat. The equations
+are derived in:</p>
+<blockquote>
+<div>Martyna, G. J.; Klein, M. L.; Tuckerman, M. J. Chem. Phys. 1992,
+97, 2635-2643.</div></blockquote>
+<p>The implementation (used here) of a symplectic integrator of the
+Nose-Hoover-Chain thermostat is discussed in:</p>
+<blockquote>
+<div>Martyna, G. J.;  Tuckerman, M. E.;  Tobias, D. J.;  Klein,
+M. L. Mol. Phys. 1996, 87, 1117-1157.</div></blockquote>
+<p><strong>Arguments:</strong></p>
+<dl class="docutils">
+<dt>temp</dt>
+<dd>The temperature of thermostat.</dd>
+</dl>
+<p><strong>Optional arguments:</strong></p>
+<dl class="docutils">
+<dt>start</dt>
+<dd>The step at which the thermostat becomes active.</dd>
+<dt>timecon</dt>
+<dd>The time constant of the Nose-Hoover thermostat.</dd>
+<dt>chainlength</dt>
+<dd>The number of beads in the Nose-Hoover chain.</dd>
+</dl>
+<dl class="method">
+<dt id="yaff.sampling.nvt.NHCThermostat.init">
+<tt class="descname">init</tt><big>(</big><em>iterative</em><big>)</big><a class="headerlink" href="#yaff.sampling.nvt.NHCThermostat.init" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="yaff.sampling.nvt.NHCThermostat.pre">
+<tt class="descname">pre</tt><big>(</big><em>iterative</em><big>)</big><a class="headerlink" href="#yaff.sampling.nvt.NHCThermostat.pre" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="yaff.sampling.nvt.NHCThermostat.post">
+<tt class="descname">post</tt><big>(</big><em>iterative</em><big>)</big><a class="headerlink" href="#yaff.sampling.nvt.NHCThermostat.post" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="yaff.sampling.nvt.LangevinThermostat">
+<em class="property">class </em><tt class="descclassname">yaff.sampling.nvt.</tt><tt class="descname">LangevinThermostat</tt><big>(</big><em>temp</em>, <em>start=0</em>, <em>timecon=4134.137333664683</em><big>)</big><a class="headerlink" href="#yaff.sampling.nvt.LangevinThermostat" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#yaff.sampling.verlet.VerletHook" title="yaff.sampling.verlet.VerletHook"><tt class="xref py py-class docutils literal"><span class="pre">yaff.sampling.verlet.VerletHook</span></tt></a></p>
+<p>This is an implementation of the Langevin thermostat. The algorithm
+is described in:</p>
+<blockquote>
+<div>Bussi, G.; Parrinello, M. Phys. Rev. E 2007, 75, 056707</div></blockquote>
+<p><strong>Arguments:</strong></p>
+<dl class="docutils">
+<dt>temp</dt>
+<dd>The temperature of thermostat.</dd>
+</dl>
+<p><strong>Optional arguments:</strong></p>
+<dl class="docutils">
+<dt>start</dt>
+<dd>The step at which the thermostat becomes active.</dd>
+<dt>timecon</dt>
+<dd>The time constant of the Nose-Hoover thermostat.</dd>
+</dl>
+<dl class="method">
+<dt id="yaff.sampling.nvt.LangevinThermostat.init">
+<tt class="descname">init</tt><big>(</big><em>iterative</em><big>)</big><a class="headerlink" href="#yaff.sampling.nvt.LangevinThermostat.init" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="yaff.sampling.nvt.LangevinThermostat.pre">
+<tt class="descname">pre</tt><big>(</big><em>iterative</em><big>)</big><a class="headerlink" href="#yaff.sampling.nvt.LangevinThermostat.pre" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="yaff.sampling.nvt.LangevinThermostat.post">
+<tt class="descname">post</tt><big>(</big><em>iterative</em><big>)</big><a class="headerlink" href="#yaff.sampling.nvt.LangevinThermostat.post" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="yaff.sampling.nvt.LangevinThermostat.thermo">
+<tt class="descname">thermo</tt><big>(</big><em>iterative</em><big>)</big><a class="headerlink" href="#yaff.sampling.nvt.LangevinThermostat.thermo" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-yaff.sampling.opt">
+<span id="yaff-sampling-opt-geometry-cell-optimization"></span><h2>3.7. <tt class="docutils literal"><span class="pre">yaff.sampling.opt</span></tt> &#8211; Geometry/Cell optimization<a class="headerlink" href="#module-yaff.sampling.opt" title="Permalink to this headline">¶</a></h2>
+<p>Geometry/Cell optimization</p>
+<dl class="class">
+<dt id="yaff.sampling.opt.OptScreenLog">
+<em class="property">class </em><tt class="descclassname">yaff.sampling.opt.</tt><tt class="descname">OptScreenLog</tt><big>(</big><em>start=0</em>, <em>step=1</em><big>)</big><a class="headerlink" href="#yaff.sampling.opt.OptScreenLog" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#yaff.sampling.iterative.Hook" title="yaff.sampling.iterative.Hook"><tt class="xref py py-class docutils literal"><span class="pre">yaff.sampling.iterative.Hook</span></tt></a></p>
+<dl class="method">
+<dt id="yaff.sampling.opt.OptScreenLog.__call__">
+<tt class="descname">__call__</tt><big>(</big><em>iterative</em><big>)</big><a class="headerlink" href="#yaff.sampling.opt.OptScreenLog.__call__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="yaff.sampling.opt.BaseOptimizer">
+<em class="property">class </em><tt class="descclassname">yaff.sampling.opt.</tt><tt class="descname">BaseOptimizer</tt><big>(</big><em>dof</em>, <em>state=None</em>, <em>hooks=None</em>, <em>counter0=0</em><big>)</big><a class="headerlink" href="#yaff.sampling.opt.BaseOptimizer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#yaff.sampling.iterative.Iterative" title="yaff.sampling.iterative.Iterative"><tt class="xref py py-class docutils literal"><span class="pre">yaff.sampling.iterative.Iterative</span></tt></a></p>
+<p><strong>Arguments:</strong></p>
+<dl class="docutils">
+<dt>dof</dt>
+<dd>A specification of the degrees of freedom. The convergence
+criteria are also part of this argument. This must be a DOF
+instance.</dd>
+</dl>
+<p><strong>Optional arguments:</strong></p>
+<dl class="docutils">
+<dt>state</dt>
+<dd>A list with state items. State items are simple objects
+that take or derive a property from the current state of the
+iterative algorithm.</dd>
+<dt>hooks</dt>
+<dd>A function (or a list of functions) that is called after every
+iterative.</dd>
+<dt>counter0</dt>
+<dd>The counter value associated with the initial state.</dd>
+</dl>
+<dl class="attribute">
+<dt id="yaff.sampling.opt.BaseOptimizer.default_state">
+<tt class="descname">default_state</tt><em class="property"> = [&lt;yaff.sampling.iterative.AttributeStateItem object at 0x39ae590&gt;, &lt;yaff.sampling.iterative.AttributeStateItem object at 0x39ae5d0&gt;, &lt;yaff.sampling.iterative.PosStateItem object at 0x39ae610&gt;, &lt;yaff.sampling.iterative.DipoleStateItem object at 0x39ae650&gt;, &lt;yaff.sampling.iterative.VolumeStateItem object at 0x39ae690&gt;, &lt;yaff.sampling.iterative.CellStateItem object at 0x39ae6d0&gt;, &lt;yaff.sampling.iterative.EPotContribStateItem object at 0x39ae710&gt;]</em><a class="headerlink" href="#yaff.sampling.opt.BaseOptimizer.default_state" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="yaff.sampling.opt.BaseOptimizer.log_name">
+<tt class="descname">log_name</tt><em class="property"> = 'XXOPT'</em><a class="headerlink" href="#yaff.sampling.opt.BaseOptimizer.log_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="yaff.sampling.opt.BaseOptimizer.fun">
+<tt class="descname">fun</tt><big>(</big><em>x</em>, <em>do_gradient=False</em><big>)</big><a class="headerlink" href="#yaff.sampling.opt.BaseOptimizer.fun" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="yaff.sampling.opt.BaseOptimizer.initialize">
+<tt class="descname">initialize</tt><big>(</big><big>)</big><a class="headerlink" href="#yaff.sampling.opt.BaseOptimizer.initialize" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="yaff.sampling.opt.BaseOptimizer.propagate">
+<tt class="descname">propagate</tt><big>(</big><big>)</big><a class="headerlink" href="#yaff.sampling.opt.BaseOptimizer.propagate" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="yaff.sampling.opt.BaseOptimizer.finalize">
+<tt class="descname">finalize</tt><big>(</big><big>)</big><a class="headerlink" href="#yaff.sampling.opt.BaseOptimizer.finalize" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="yaff.sampling.opt.CGOptimizer">
+<em class="property">class </em><tt class="descclassname">yaff.sampling.opt.</tt><tt class="descname">CGOptimizer</tt><big>(</big><em>dof</em>, <em>state=None</em>, <em>hooks=None</em>, <em>counter0=0</em><big>)</big><a class="headerlink" href="#yaff.sampling.opt.CGOptimizer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#yaff.sampling.opt.BaseOptimizer" title="yaff.sampling.opt.BaseOptimizer"><tt class="xref py py-class docutils literal"><span class="pre">yaff.sampling.opt.BaseOptimizer</span></tt></a></p>
+<dl class="attribute">
+<dt id="yaff.sampling.opt.CGOptimizer.log_name">
+<tt class="descname">log_name</tt><em class="property"> = 'CGOPT'</em><a class="headerlink" href="#yaff.sampling.opt.CGOptimizer.log_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="yaff.sampling.opt.CGOptimizer.initialize">
+<tt class="descname">initialize</tt><big>(</big><big>)</big><a class="headerlink" href="#yaff.sampling.opt.CGOptimizer.initialize" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="yaff.sampling.opt.CGOptimizer.propagate">
+<tt class="descname">propagate</tt><big>(</big><big>)</big><a class="headerlink" href="#yaff.sampling.opt.CGOptimizer.propagate" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="yaff.sampling.opt.BFGSHessianModel">
+<em class="property">class </em><tt class="descclassname">yaff.sampling.opt.</tt><tt class="descname">BFGSHessianModel</tt><big>(</big><em>ndof</em>, <em>hessian0=None</em><big>)</big><a class="headerlink" href="#yaff.sampling.opt.BFGSHessianModel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">yaff.sampling.opt.HessianModel</span></tt></p>
+<p><strong>Arguments:</strong></p>
+<dl class="docutils">
+<dt>ndof</dt>
+<dd>The number of degrees of freedom</dd>
+</dl>
+<p><strong>Optional arguments:</strong></p>
+<dl class="docutils">
+<dt>hessian0</dt>
+<dd>An initial guess for the hessian</dd>
+</dl>
+<dl class="method">
+<dt id="yaff.sampling.opt.BFGSHessianModel.update">
+<tt class="descname">update</tt><big>(</big><em>dx</em>, <em>dg</em><big>)</big><a class="headerlink" href="#yaff.sampling.opt.BFGSHessianModel.update" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="yaff.sampling.opt.SR1HessianModel">
+<em class="property">class </em><tt class="descclassname">yaff.sampling.opt.</tt><tt class="descname">SR1HessianModel</tt><big>(</big><em>ndof</em>, <em>hessian0=None</em><big>)</big><a class="headerlink" href="#yaff.sampling.opt.SR1HessianModel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">yaff.sampling.opt.HessianModel</span></tt></p>
+<p><strong>Arguments:</strong></p>
+<dl class="docutils">
+<dt>ndof</dt>
+<dd>The number of degrees of freedom</dd>
+</dl>
+<p><strong>Optional arguments:</strong></p>
+<dl class="docutils">
+<dt>hessian0</dt>
+<dd>An initial guess for the hessian</dd>
+</dl>
+<dl class="method">
+<dt id="yaff.sampling.opt.SR1HessianModel.update">
+<tt class="descname">update</tt><big>(</big><em>dx</em>, <em>dg</em><big>)</big><a class="headerlink" href="#yaff.sampling.opt.SR1HessianModel.update" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="yaff.sampling.opt.QNOptimizer">
+<em class="property">class </em><tt class="descclassname">yaff.sampling.opt.</tt><tt class="descname">QNOptimizer</tt><big>(</big><em>dof</em>, <em>state=None</em>, <em>hooks=None</em>, <em>counter0=0</em>, <em>trust_radius=1.0</em>, <em>small_radius=1e-05</em>, <em>too_small_radius=1e-10</em>, <em>hessian0=None</em><big>)</big><a class="headerlink" href="#yaff.sampling.opt.QNOptimizer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#yaff.sampling.opt.BaseOptimizer" title="yaff.sampling.opt.BaseOptimizer"><tt class="xref py py-class docutils literal"><span class="pre">yaff.sampling.opt.BaseOptimizer</span></tt></a></p>
+<p>A Quasi-newton optimizer</p>
+<p>This is just a basic implementation of the algorithm, but it has the
+potential to become more advanced and efficient. The following
+improvements will be made when time permits:</p>
+<ol class="arabic simple">
+<li>Support for non-linear constraints. This should be relatively easy. We
+need a routine that can bring the unknowns back to the constraints,
+and a routine to solve a constrained second order problem with linear
+equality/inequality constraints. These should be methods of an object
+that is an attribute of the dof object, which is need to give the
+constraint code access to the Cartesian coordinates. In the code
+below, some comments are added to mark where the constraint methods
+should be called.</li>
+<li>The Hessian updates and the diagonalization are currently very slow
+for big systems. This can be fixed with a rank-1 update algorithm for
+the spectral decomposition.</li>
+<li>The optimizer would become much more efficient if redundant
+coordinates were used. This can be implemented efficiently by using
+the same machinery as the constraint code, but using the dlist and
+iclist concepts for the sake of efficiency.</li>
+<li>It is in practice not needed to keep track of the full Hessian. The
+L-BFGS algorithm is a nice method to obtain a linear memory usage and
+computational cost. However, L-BFGS is not compatible with the trust
+radius used in this class, while we want to keep the trust radius for
+the sake of efficiency, robustness and support for constraints. Using
+the rank-1 updates mentioned above, it should be relatively easy to
+keep track of the decomposition of a subspace of the Hessian.
+This subspace can be defined as the basis of the last N rank-1
+updates. Simple assumptions about the remainder of the spectrum should
+be sufficient to keep the algorithm efficient.</li>
+</ol>
+<p><strong>Arguments:</strong></p>
+<dl class="docutils">
+<dt>dof</dt>
+<dd>A specification of the degrees of freedom. The convergence
+criteria are also part of this argument. This must be a DOF
+instance.</dd>
+</dl>
+<p><strong>Optional arguments:</strong></p>
+<dl class="docutils">
+<dt>state</dt>
+<dd>A list with state items. State items are simple objects
+that take or derive a property from the current state of the
+iterative algorithm.</dd>
+<dt>hooks</dt>
+<dd>A function (or a list of functions) that is called after every
+iterative.</dd>
+<dt>counter0</dt>
+<dd>The counter value associated with the initial state.</dd>
+<dt>trust_radius</dt>
+<dd>The initial value for the trust radius. It is adapted by the
+algorithm after every step. The adapted trust radius is never
+allowed to increase above this initial value.</dd>
+<dt>small_radius</dt>
+<dd>If the trust radius goes below this limit, the decrease in
+energy is no longer essential. Instead a decrease in the norm
+of the gradient is used to accept/reject a step.</dd>
+<dt>too_small_radius</dt>
+<dd>If the trust radius becomes smaller than this parameter, the
+optimizer gives up. Insanely small trust radii are typical for
+potential energy surfaces that are not entirely smooth.</dd>
+<dt>hessian0</dt>
+<dd>An initial guess for the Hessian</dd>
+</dl>
+<dl class="attribute">
+<dt id="yaff.sampling.opt.QNOptimizer.log_name">
+<tt class="descname">log_name</tt><em class="property"> = 'QNOPT'</em><a class="headerlink" href="#yaff.sampling.opt.QNOptimizer.log_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="yaff.sampling.opt.QNOptimizer.initialize">
+<tt class="descname">initialize</tt><big>(</big><big>)</big><a class="headerlink" href="#yaff.sampling.opt.QNOptimizer.initialize" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="yaff.sampling.opt.QNOptimizer.propagate">
+<tt class="descname">propagate</tt><big>(</big><big>)</big><a class="headerlink" href="#yaff.sampling.opt.QNOptimizer.propagate" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="yaff.sampling.opt.QNOptimizer.make_step">
+<tt class="descname">make_step</tt><big>(</big><big>)</big><a class="headerlink" href="#yaff.sampling.opt.QNOptimizer.make_step" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="yaff.sampling.opt.solve_trust_radius">
+<tt class="descclassname">yaff.sampling.opt.</tt><tt class="descname">solve_trust_radius</tt><big>(</big><em>grad</em>, <em>evals</em>, <em>radius</em>, <em>threshold=1e-05</em><big>)</big><a class="headerlink" href="#yaff.sampling.opt.solve_trust_radius" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find a step in eigen space with the given radius</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-yaff.sampling.trajectory">
+<span id="yaff-sampling-trajectory-computations-on-a-reference-trajectory"></span><h2>3.8. <tt class="docutils literal"><span class="pre">yaff.sampling.trajectory</span></tt> &#8211; Computations on a reference trajectory<a class="headerlink" href="#module-yaff.sampling.trajectory" title="Permalink to this headline">¶</a></h2>
+<p>Computations on a reference trajectory</p>
+<dl class="class">
+<dt id="yaff.sampling.trajectory.TrajScreenLog">
+<em class="property">class </em><tt class="descclassname">yaff.sampling.trajectory.</tt><tt class="descname">TrajScreenLog</tt><big>(</big><em>start=0</em>, <em>step=1</em><big>)</big><a class="headerlink" href="#yaff.sampling.trajectory.TrajScreenLog" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#yaff.sampling.iterative.Hook" title="yaff.sampling.iterative.Hook"><tt class="xref py py-class docutils literal"><span class="pre">yaff.sampling.iterative.Hook</span></tt></a></p>
+<dl class="method">
+<dt id="yaff.sampling.trajectory.TrajScreenLog.__call__">
+<tt class="descname">__call__</tt><big>(</big><em>iterative</em><big>)</big><a class="headerlink" href="#yaff.sampling.trajectory.TrajScreenLog.__call__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="yaff.sampling.trajectory.RefTrajectory">
+<em class="property">class </em><tt class="descclassname">yaff.sampling.trajectory.</tt><tt class="descname">RefTrajectory</tt><big>(</big><em>ff</em>, <em>fn_traj</em>, <em>state=None</em>, <em>hooks=None</em>, <em>counter0=0</em><big>)</big><a class="headerlink" href="#yaff.sampling.trajectory.RefTrajectory" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#yaff.sampling.iterative.Iterative" title="yaff.sampling.iterative.Iterative"><tt class="xref py py-class docutils literal"><span class="pre">yaff.sampling.iterative.Iterative</span></tt></a></p>
+<p><strong>Arguments:</strong></p>
+<dl class="docutils">
+<dt>ff</dt>
+<dd>A ForceField instance</dd>
+</dl>
+<p>fn_traj</p>
+<blockquote>
+<div>A hdf5 file name containing the trajectory</div></blockquote>
+<p><strong>Optional arguments:</strong></p>
+<dl class="docutils">
+<dt>state</dt>
+<dd>A list with state items. State items are simple objects
+that take or derive a property from the current state of the
+iterative algorithm.</dd>
+<dt>hooks</dt>
+<dd>A function (or a list of functions) that is called after every
+iterative.</dd>
+<dt>counter0</dt>
+<dd>The counter value associated with the initial state.</dd>
+</dl>
+<dl class="attribute">
+<dt id="yaff.sampling.trajectory.RefTrajectory.default_state">
+<tt class="descname">default_state</tt><em class="property"> = [&lt;yaff.sampling.iterative.AttributeStateItem object at 0x39aead0&gt;, &lt;yaff.sampling.iterative.AttributeStateItem object at 0x39aeb10&gt;, &lt;yaff.sampling.iterative.PosStateItem object at 0x39aeb50&gt;, &lt;yaff.sampling.iterative.DipoleStateItem object at 0x39aebd0&gt;, &lt;yaff.sampling.iterative.VolumeStateItem object at 0x39aec10&gt;, &lt;yaff.sampling.iterative.CellStateItem object at 0x39aec50&gt;, &lt;yaff.sampling.iterative.EPotContribStateItem object at 0x39aec90&gt;]</em><a class="headerlink" href="#yaff.sampling.trajectory.RefTrajectory.default_state" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="yaff.sampling.trajectory.RefTrajectory.log_name">
+<tt class="descname">log_name</tt><em class="property"> = 'TRAJEC'</em><a class="headerlink" href="#yaff.sampling.trajectory.RefTrajectory.log_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="yaff.sampling.trajectory.RefTrajectory.initialize">
+<tt class="descname">initialize</tt><big>(</big><big>)</big><a class="headerlink" href="#yaff.sampling.trajectory.RefTrajectory.initialize" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="yaff.sampling.trajectory.RefTrajectory.propagate">
+<tt class="descname">propagate</tt><big>(</big><big>)</big><a class="headerlink" href="#yaff.sampling.trajectory.RefTrajectory.propagate" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="yaff.sampling.trajectory.RefTrajectory.finalize">
+<tt class="descname">finalize</tt><big>(</big><big>)</big><a class="headerlink" href="#yaff.sampling.trajectory.RefTrajectory.finalize" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-yaff.sampling.utils">
+<span id="yaff-sampling-utils-auxiliary-routines-for-initial-velocities"></span><h2>3.9. <tt class="docutils literal"><span class="pre">yaff.sampling.utils</span></tt> &#8211; Auxiliary routines for initial velocities<a class="headerlink" href="#module-yaff.sampling.utils" title="Permalink to this headline">¶</a></h2>
+<p>Auxiliary routines for initial velocities</p>
+<dl class="function">
+<dt id="yaff.sampling.utils.get_random_vel">
+<tt class="descclassname">yaff.sampling.utils.</tt><tt class="descname">get_random_vel</tt><big>(</big><em>temp0</em>, <em>scalevel0</em>, <em>masses</em>, <em>select=None</em><big>)</big><a class="headerlink" href="#yaff.sampling.utils.get_random_vel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate random atomic velocities using a Maxwell-Boltzmann distribution</p>
+<p><strong>Arguments:</strong></p>
+<dl class="docutils">
+<dt>temp0</dt>
+<dd>The temperature for the Maxwell-Boltzmann distribution.</dd>
+<dt>svalevel0</dt>
+<dd>When set to True, the velocities are rescaled such that the
+instantaneous temperature coincides with temp0.</dd>
+<dt>masses</dt>
+<dd>An (N,) array with atomic masses.</dd>
+</dl>
+<p><strong>Optional arguments:</strong></p>
+<dl class="docutils">
+<dt>select</dt>
+<dd>When given, this must be an array of integer indexes. Only for these
+atoms (masses) initial velocities will be generated.</dd>
+</dl>
+<p><strong>Returns:</strong> An (N, 3) array with random velocities. When the select
+option is used, the shape of the results is (M, 3), where M is the length
+of the select array.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="yaff.sampling.utils.remove_com_moment">
+<tt class="descclassname">yaff.sampling.utils.</tt><tt class="descname">remove_com_moment</tt><big>(</big><em>vel</em>, <em>masses</em><big>)</big><a class="headerlink" href="#yaff.sampling.utils.remove_com_moment" title="Permalink to this definition">¶</a></dt>
+<dd><p>Zero the linear center-of-mass momentum.</p>
+<p><strong>Arguments:</strong></p>
+<dl class="docutils">
+<dt>vel</dt>
+<dd>An (N, 3) array with atomic velocities. This array is modified
+in-place.</dd>
+<dt>masses</dt>
+<dd>An (N,) array with atomic masses</dd>
+</dl>
+<p>The zero linear COM momentum is achieved by subtracting translational
+rigid body motion from the atomic velocities.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="yaff.sampling.utils.remove_angular_moment">
+<tt class="descclassname">yaff.sampling.utils.</tt><tt class="descname">remove_angular_moment</tt><big>(</big><em>pos</em>, <em>vel</em>, <em>masses</em><big>)</big><a class="headerlink" href="#yaff.sampling.utils.remove_angular_moment" title="Permalink to this definition">¶</a></dt>
+<dd><p>Zero the global angular momentum.</p>
+<p><strong>Arguments:</strong></p>
+<dl class="docutils">
+<dt>pos</dt>
+<dd>An (N, 3) array with atomic positions. This array is not modified.</dd>
+<dt>vel</dt>
+<dd>An (N, 3) array with atomic velocities. This array is modified
+in-place.</dd>
+<dt>masses</dt>
+<dd>An (N,) array with atomic masses</dd>
+</dl>
+<p>The zero angular momentum is achieved by subtracting angular rigid body
+motion from the atomic velocities. (The angular momentum is measured
+with respect to the center of mass to avoid that this routine
+reintroduces a linear COM velocity. This is also beneficial for the
+numerical stability.)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="yaff.sampling.utils.clean_momenta">
+<tt class="descclassname">yaff.sampling.utils.</tt><tt class="descname">clean_momenta</tt><big>(</big><em>pos</em>, <em>vel</em>, <em>masses</em>, <em>cell</em><big>)</big><a class="headerlink" href="#yaff.sampling.utils.clean_momenta" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove any relevant external momenta</p>
+<p><strong>Arguments:</strong></p>
+<dl class="docutils">
+<dt>pos</dt>
+<dd>An (N, 3) array with atomic positions. This array is not modified.</dd>
+<dt>vel</dt>
+<dd>An (N, 3) array with atomic velocities. This array is modified
+in-place.</dd>
+<dt>masses</dt>
+<dd>An (N,) array with atomic masses</dd>
+<dt>cell</dt>
+<dd>A Cell instance describing the periodic boundary conditions.</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="yaff.sampling.utils.angular_moment">
+<tt class="descclassname">yaff.sampling.utils.</tt><tt class="descname">angular_moment</tt><big>(</big><em>pos</em>, <em>vel</em>, <em>masses</em><big>)</big><a class="headerlink" href="#yaff.sampling.utils.angular_moment" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute the angular moment of a set of point particles</p>
+<p><strong>Arguments:</strong></p>
+<dl class="docutils">
+<dt>pos</dt>
+<dd>An (N, 3) array with atomic positions.</dd>
+<dt>vel</dt>
+<dd>An (N, 3) array with atomic velocities.</dd>
+<dt>masses</dt>
+<dd>An (N,) array with atomic masses.</dd>
+</dl>
+<p><strong>Returns:</strong> a (3,) array with the angular momentum vector.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="yaff.sampling.utils.get_ndof_internal_md">
+<tt class="descclassname">yaff.sampling.utils.</tt><tt class="descname">get_ndof_internal_md</tt><big>(</big><em>natom</em>, <em>nper</em><big>)</big><a class="headerlink" href="#yaff.sampling.utils.get_ndof_internal_md" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the effective number of internal degrees of freedom for MD simulations</p>
+<p><strong>Arguments:</strong></p>
+<dl class="docutils">
+<dt>natom</dt>
+<dd>The number of atoms</dd>
+<dt>nper</dt>
+<dd>The number of periodic boundary conditions. (0 for isolated systems)</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-yaff.sampling.verlet">
+<span id="yaff-sampling-verlet-generic-verlet-integrator"></span><h2>3.10. <tt class="docutils literal"><span class="pre">yaff.sampling.verlet</span></tt> &#8211; Generic Verlet integrator<a class="headerlink" href="#module-yaff.sampling.verlet" title="Permalink to this headline">¶</a></h2>
+<p>Generic Verlet integrator</p>
+<dl class="class">
+<dt id="yaff.sampling.verlet.TemperatureStateItem">
+<em class="property">class </em><tt class="descclassname">yaff.sampling.verlet.</tt><tt class="descname">TemperatureStateItem</tt><a class="headerlink" href="#yaff.sampling.verlet.TemperatureStateItem" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#yaff.sampling.iterative.StateItem" title="yaff.sampling.iterative.StateItem"><tt class="xref py py-class docutils literal"><span class="pre">yaff.sampling.iterative.StateItem</span></tt></a></p>
+<dl class="method">
+<dt id="yaff.sampling.verlet.TemperatureStateItem.get_value">
+<tt class="descname">get_value</tt><big>(</big><em>iterative</em><big>)</big><a class="headerlink" href="#yaff.sampling.verlet.TemperatureStateItem.get_value" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="yaff.sampling.verlet.TemperatureStateItem.iter_attrs">
+<tt class="descname">iter_attrs</tt><big>(</big><em>iterative</em><big>)</big><a class="headerlink" href="#yaff.sampling.verlet.TemperatureStateItem.iter_attrs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="yaff.sampling.verlet.VerletIntegrator">
+<em class="property">class </em><tt class="descclassname">yaff.sampling.verlet.</tt><tt class="descname">VerletIntegrator</tt><big>(</big><em>ff</em>, <em>timestep</em>, <em>state=None</em>, <em>hooks=None</em>, <em>vel0=None</em>, <em>temp0=300</em>, <em>scalevel0=True</em>, <em>time0=0.0</em>, <em>ndof=None</em>, <em>counter0=0</em><big>)</big><a class="headerlink" href="#yaff.sampling.verlet.VerletIntegrator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#yaff.sampling.iterative.Iterative" title="yaff.sampling.iterative.Iterative"><tt class="xref py py-class docutils literal"><span class="pre">yaff.sampling.iterative.Iterative</span></tt></a></p>
+<p><strong>Arguments:</strong></p>
+<dl class="docutils">
+<dt>ff</dt>
+<dd>A ForceField instance</dd>
+<dt>timestep</dt>
+<dd>The integration time step (in atomic units)</dd>
+</dl>
+<p><strong>Optional arguments:</strong></p>
+<dl class="docutils">
+<dt>state</dt>
+<dd>A list with state items. State items are simple objects
+that take or derive a property from the current state of the
+iterative algorithm.</dd>
+<dt>hooks</dt>
+<dd>A function (or a list of functions) that is called after every
+iterative.</dd>
+<dt>vel0</dt>
+<dd>An array with initial velocities. If not given, random
+velocities are sampled from the Maxwell-Boltzmann distribution
+corresponding to the optional arguments temp0 and scalevel0</dd>
+<dt>temp0</dt>
+<dd>The (initial) temperature for the random initial velocities</dd>
+<dt>scalevel0</dt>
+<dd>If True (the default), the random velocities are rescaled such
+that the instantaneous temperature coincides with temp0.</dd>
+<dt>time0</dt>
+<dd>The time associated with the initial state.</dd>
+<dt>ndof</dt>
+<dd>When given, this option overrides the number of degrees of
+freedom determined from internal heuristics. When ndof is not
+given, its default value depends on the thermostat used. In most
+cases it is 3*natom, except for the NHC thermostat where the
+number if internal degrees of freedom is counted. The ndof
+attribute is used to derive the temperature from the kinetic
+energy.</dd>
+<dt>counter0</dt>
+<dd>The counter value associated with the initial state.</dd>
+</dl>
+<dl class="attribute">
+<dt id="yaff.sampling.verlet.VerletIntegrator.default_state">
+<tt class="descname">default_state</tt><em class="property"> = [&lt;yaff.sampling.iterative.AttributeStateItem object at 0x3847e50&gt;, &lt;yaff.sampling.iterative.AttributeStateItem object at 0x3847e90&gt;, &lt;yaff.sampling.iterative.AttributeStateItem object at 0x3847ed0&gt;, &lt;yaff.sampling.iterative.PosStateItem object at 0x3847f10&gt;, &lt;yaff.sampling.iterative.AttributeStateItem object at 0x3847f90&gt;, &lt;yaff.sampling.iterative.AttributeStateItem object at 0x3847fd0&gt;, &lt;yaff.sampling.iterative.AttributeStateItem object at 0x3852050&gt;, &lt;yaff.sampling.iterative.AttributeStateItem object at 0x3852090&gt;, &lt;yaff.sampling.verlet.TemperatureStateItem object at 0x38520d0&gt;, &lt;yaff.sampling.iterative.AttributeStateItem object at 0x3852110&gt;, &lt;yaff.sampling.iterative.AttributeStateItem object at 0x3852150&gt;, &lt;yaff.sampling.iterative.AttributeStateItem object at 0x3852190&gt;, &lt;yaff.sampling.iterative.AttributeStateItem object at 0x38521d0&gt;, &lt;yaff.sampling.iterative.AttributeStateItem object at 0x3852210&gt;, &lt;yaff.sampling.iterative.DipoleStateItem object at 0x3852250&gt;, &lt;yaff.sampling.iterative.DipoleVelStateItem object at 0x3852290&gt;, &lt;yaff.sampling.iterative.VolumeStateItem object at 0x38522d0&gt;, &lt;yaff.sampling.iterative.CellStateItem object at 0x3852310&gt;, &lt;yaff.sampling.iterative.EPotContribStateItem object at 0x3852350&gt;]</em><a class="headerlink" href="#yaff.sampling.verlet.VerletIntegrator.default_state" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="yaff.sampling.verlet.VerletIntegrator.log_name">
+<tt class="descname">log_name</tt><em class="property"> = 'VERLET'</em><a class="headerlink" href="#yaff.sampling.verlet.VerletIntegrator.log_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="yaff.sampling.verlet.VerletIntegrator.initialize">
+<tt class="descname">initialize</tt><big>(</big><big>)</big><a class="headerlink" href="#yaff.sampling.verlet.VerletIntegrator.initialize" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="yaff.sampling.verlet.VerletIntegrator.propagate">
+<tt class="descname">propagate</tt><big>(</big><big>)</big><a class="headerlink" href="#yaff.sampling.verlet.VerletIntegrator.propagate" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="yaff.sampling.verlet.VerletIntegrator.compute_properties">
+<tt class="descname">compute_properties</tt><big>(</big><big>)</big><a class="headerlink" href="#yaff.sampling.verlet.VerletIntegrator.compute_properties" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="yaff.sampling.verlet.VerletIntegrator.finalize">
+<tt class="descname">finalize</tt><big>(</big><big>)</big><a class="headerlink" href="#yaff.sampling.verlet.VerletIntegrator.finalize" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="yaff.sampling.verlet.VerletIntegrator.call_verlet_hooks">
+<tt class="descname">call_verlet_hooks</tt><big>(</big><em>kind</em><big>)</big><a class="headerlink" href="#yaff.sampling.verlet.VerletIntegrator.call_verlet_hooks" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="yaff.sampling.verlet.VerletHook">
+<em class="property">class </em><tt class="descclassname">yaff.sampling.verlet.</tt><tt class="descname">VerletHook</tt><big>(</big><em>start=0</em>, <em>step=1</em><big>)</big><a class="headerlink" href="#yaff.sampling.verlet.VerletHook" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#yaff.sampling.iterative.Hook" title="yaff.sampling.iterative.Hook"><tt class="xref py py-class docutils literal"><span class="pre">yaff.sampling.iterative.Hook</span></tt></a></p>
+<p>Specialized Verlet hook.</p>
+<p>This is mainly used for the implementation of thermostats and barostats.</p>
+<p><strong>Optional arguments:</strong></p>
+<dl class="docutils">
+<dt>start</dt>
+<dd>The first iteration at which this hook should be called.</dd>
+<dt>step</dt>
+<dd>The hook will be called every <cite>step</cite> iterations.</dd>
+</dl>
+<dl class="method">
+<dt id="yaff.sampling.verlet.VerletHook.__call__">
+<tt class="descname">__call__</tt><big>(</big><em>iterative</em><big>)</big><a class="headerlink" href="#yaff.sampling.verlet.VerletHook.__call__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="yaff.sampling.verlet.VerletHook.init">
+<tt class="descname">init</tt><big>(</big><em>iterative</em><big>)</big><a class="headerlink" href="#yaff.sampling.verlet.VerletHook.init" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="yaff.sampling.verlet.VerletHook.pre">
+<tt class="descname">pre</tt><big>(</big><em>iterative</em><big>)</big><a class="headerlink" href="#yaff.sampling.verlet.VerletHook.pre" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="yaff.sampling.verlet.VerletHook.post">
+<tt class="descname">post</tt><big>(</big><em>iterative</em><big>)</big><a class="headerlink" href="#yaff.sampling.verlet.VerletHook.post" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="yaff.sampling.verlet.VerletScreenLog">
+<em class="property">class </em><tt class="descclassname">yaff.sampling.verlet.</tt><tt class="descname">VerletScreenLog</tt><big>(</big><em>start=0</em>, <em>step=1</em><big>)</big><a class="headerlink" href="#yaff.sampling.verlet.VerletScreenLog" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#yaff.sampling.iterative.Hook" title="yaff.sampling.iterative.Hook"><tt class="xref py py-class docutils literal"><span class="pre">yaff.sampling.iterative.Hook</span></tt></a></p>
+<p>A screen logger for the Verlet algorithm</p>
+<dl class="method">
+<dt id="yaff.sampling.verlet.VerletScreenLog.__call__">
+<tt class="descname">__call__</tt><big>(</big><em>iterative</em><big>)</big><a class="headerlink" href="#yaff.sampling.verlet.VerletScreenLog.__call__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="yaff.sampling.verlet.ConsErrTracker">
+<em class="property">class </em><tt class="descclassname">yaff.sampling.verlet.</tt><tt class="descname">ConsErrTracker</tt><a class="headerlink" href="#yaff.sampling.verlet.ConsErrTracker" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<p>A class that tracks the errors on the conserved quantity</p>
+<dl class="method">
+<dt id="yaff.sampling.verlet.ConsErrTracker.update">
+<tt class="descname">update</tt><big>(</big><em>ekin</em>, <em>econs</em><big>)</big><a class="headerlink" href="#yaff.sampling.verlet.ConsErrTracker.update" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="yaff.sampling.verlet.ConsErrTracker.get">
+<tt class="descname">get</tt><big>(</big><big>)</big><a class="headerlink" href="#yaff.sampling.verlet.ConsErrTracker.get" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="yaff.sampling.verlet.KineticAnnealing">
+<em class="property">class </em><tt class="descclassname">yaff.sampling.verlet.</tt><tt class="descname">KineticAnnealing</tt><big>(</big><em>annealing=0.99999</em>, <em>select=None</em>, <em>start=0</em>, <em>step=1</em><big>)</big><a class="headerlink" href="#yaff.sampling.verlet.KineticAnnealing" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#yaff.sampling.verlet.VerletHook" title="yaff.sampling.verlet.VerletHook"><tt class="xref py py-class docutils literal"><span class="pre">yaff.sampling.verlet.VerletHook</span></tt></a></p>
+<p>This annealing hook is designed to be used with a plain Verlet
+integrator. At every call, the velocities are rescaled with
+the annealing parameter.</p>
+<p><strong>Arguments:</strong></p>
+<dl class="docutils">
+<dt>annealing</dt>
+<dd>After every call to this hook, the temperature is multiplied
+with this annealing factor. This effectively cools down the
+system.</dd>
+<dt>select</dt>
+<dd>An array mask or a list of indexes to indicate which
+atomic velocities should be annealed.</dd>
+<dt>start</dt>
+<dd>The first iteration at which this hook is called</dd>
+<dt>step</dt>
+<dd>The number of iterations between two subsequent calls to this
+hook.</dd>
+</dl>
+<dl class="method">
+<dt id="yaff.sampling.verlet.KineticAnnealing.init">
+<tt class="descname">init</tt><big>(</big><em>iterative</em><big>)</big><a class="headerlink" href="#yaff.sampling.verlet.KineticAnnealing.init" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="yaff.sampling.verlet.KineticAnnealing.pre">
+<tt class="descname">pre</tt><big>(</big><em>iterative</em><big>)</big><a class="headerlink" href="#yaff.sampling.verlet.KineticAnnealing.pre" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="yaff.sampling.verlet.KineticAnnealing.post">
+<tt class="descname">post</tt><big>(</big><em>iterative</em><big>)</big><a class="headerlink" href="#yaff.sampling.verlet.KineticAnnealing.post" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">3. <tt class="docutils literal"><span class="pre">yaff.sampling</span></tt> &#8211; Phase-space sampling</a><ul>
+<li><a class="reference internal" href="#module-yaff.sampling.dof">3.1. <tt class="docutils literal"><span class="pre">yaff.sampling.dof</span></tt> &#8211; Abstraction layer for degrees of freedom</a></li>
+<li><a class="reference internal" href="#module-yaff.sampling.harmonic">3.2. <tt class="docutils literal"><span class="pre">yaff.sampling.harmonic</span></tt> &#8211; Harmonic models</a></li>
+<li><a class="reference internal" href="#module-yaff.sampling.io">3.3. <tt class="docutils literal"><span class="pre">yaff.sampling.io</span></tt> &#8211; Trajectory writers</a></li>
+<li><a class="reference internal" href="#module-yaff.sampling.iterative">3.4. <tt class="docutils literal"><span class="pre">yaff.sampling.iterative</span></tt> &#8211; Base class for iterative algorithms</a></li>
+<li><a class="reference internal" href="#module-yaff.sampling.npt">3.5. <tt class="docutils literal"><span class="pre">yaff.sampling.npt</span></tt> &#8211; Barostats</a></li>
+<li><a class="reference internal" href="#module-yaff.sampling.nvt">3.6. <tt class="docutils literal"><span class="pre">yaff.sampling.nvt</span></tt> &#8211; Thermostats</a></li>
+<li><a class="reference internal" href="#module-yaff.sampling.opt">3.7. <tt class="docutils literal"><span class="pre">yaff.sampling.opt</span></tt> &#8211; Geometry/Cell optimization</a></li>
+<li><a class="reference internal" href="#module-yaff.sampling.trajectory">3.8. <tt class="docutils literal"><span class="pre">yaff.sampling.trajectory</span></tt> &#8211; Computations on a reference trajectory</a></li>
+<li><a class="reference internal" href="#module-yaff.sampling.utils">3.9. <tt class="docutils literal"><span class="pre">yaff.sampling.utils</span></tt> &#8211; Auxiliary routines for initial velocities</a></li>
+<li><a class="reference internal" href="#module-yaff.sampling.verlet">3.10. <tt class="docutils literal"><span class="pre">yaff.sampling.verlet</span></tt> &#8211; Generic Verlet integrator</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="rg_yaff_pes.html"
+                        title="previous chapter">2. <tt class="docutils literal"><span class="pre">yaff.pes</span></tt> &#8211; Force-field potential energy surfaces (PESs)</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="rg_yaff_analysis.html"
+                        title="next chapter">4. <tt class="docutils literal"><span class="pre">yaff.analysis</span></tt> &#8211; Trajectory analysis</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/rg_yaff_sampling.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="rg_yaff_analysis.html" title="4. yaff.analysis – Trajectory analysis"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="rg_yaff_pes.html" title="2. yaff.pes – Force-field potential energy surfaces (PESs)"
+             >previous</a> |</li>
+        <li><a href="index.html">Yaff 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2011, Toon Verstraelen, Louis Vanduyfhuys.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>
